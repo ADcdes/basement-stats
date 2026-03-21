@@ -1,61 +1,228 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Fraktu's Basement | Leaderboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraktu's Basement | Rankings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 50px; }
-        .card { background: #252525; border-radius: 15px; padding: 20px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        h1 { color: #7289da; text-transform: uppercase; letter-spacing: 2px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { border-bottom: 2px solid #444; padding: 10px; color: #aaa; }
-        td { padding: 15px; border-bottom: 1px solid #333; }
-        .tier-ht1 { color: #ff5555; font-weight: bold; text-shadow: 0 0 5px #ff5555; }
-        .tier-lt5 { color: #aaaaaa; }
+        :root {
+            --bg-dark: #0f0f12;
+            --card-bg: #16161a;
+            --border: #2d2d35;
+            --accent: #7289da;
+            --text-main: #ffffff;
+            --text-dim: #b9bbbe;
+            --gold: #ffac33;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar Style */
+        nav {
+            width: 100%;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .discord-btn {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .discord-btn:hover {
+            filter: brightness(1.2);
+            transform: translateY(-2px);
+        }
+
+        /* Leaderboard Container */
+        .leaderboard-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 1000px;
+            margin-bottom: 50px;
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #1c1c21;
+            padding: 15px;
+            text-align: left;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        tr:hover { background: #1a1a20; }
+
+        .rank { font-weight: bold; color: var(--text-dim); width: 50px; text-align: center; }
+        .player-name { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+        .elo { font-family: 'monospace'; color: var(--accent); font-weight: bold; }
+        
+        .tier-tag {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            background: #2d2d35;
+        }
+
+        /* Tier Colors */
+        .tier-ht1 { color: #ff5555; border: 1px solid #ff5555; }
+        .tier-lt5 { color: #aaaaaa; border: 1px solid #444; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏆 Basement Rankings</h1>
-        <div class="card">
-            <table id="leaderboard">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Vanilla Elo</th>
-                        <th>Tier</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    </tbody>
-            </table>
-        </div>
-    </div>
 
-    <script>
-        // This script reads your players.json
+<nav id="mode-nav">
+    </nav>
+
+<header>
+    <h1>FRAKTU'S BASEMENT</h1>
+    <a href="https://discord.gg/uz4qSzDV2D" class="discord-btn">
+        <i class="fab fa-discord"></i> Join Fraktu's Basement
+    </a>
+</header>
+
+<div class="leaderboard-card">
+    <table id="leaderboard">
+        <thead>
+            <tr>
+                <th class="rank">#</th>
+                <th>Player</th>
+                <th>Elo Rating</th>
+                <th>Tier</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const GAMEMODES = ["Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
+    let currentMode = "Vanilla";
+
+    // Setup Navbar
+    const nav = document.getElementById('mode-nav');
+    GAMEMODES.forEach(mode => {
+        const link = document.createElement('a');
+        link.className = `nav-link ${mode === currentMode ? 'active' : ''}`;
+        link.innerText = mode;
+        link.onclick = () => {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            currentMode = mode;
+            loadLeaderboard();
+        };
+        nav.appendChild(link);
+    });
+
+    function getTier(elo) {
+        if (elo >= 2500) return "HT1";
+        if (elo >= 2200) return "HT2";
+        if (elo >= 2000) return "HT3";
+        if (elo >= 1800) return "LT1";
+        if (elo >= 1600) return "LT2";
+        if (elo >= 1400) return "LT3";
+        if (elo >= 1200) return "LT4";
+        return "LT5";
+    }
+
+    function loadLeaderboard() {
         fetch('players.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 const tbody = document.getElementById('table-body');
-                const players = Object.values(data.players).sort((a, b) => b.elo.Vanilla - a.elo.Vanilla);
+                tbody.innerHTML = '';
                 
-                players.forEach((p, index) => {
-                    let tier = "LT5"; // Simple version for the web logic
-                    if (p.elo.Vanilla >= 2500) tier = "HT1";
-                    else if (p.elo.Vanilla >= 2000) tier = "HT3";
+                // Only show active players (those who have matches in history or just non-zero if preferred)
+                // Here we sort and filter
+                const players = Object.values(data.players)
+                    .sort((a, b) => (b.elo[currentMode] || 1000) - (a.elo[currentMode] || 1000));
+
+                players.forEach((p, i) => {
+                    const elo = p.elo[currentMode] || 1000;
+                    const tier = getTier(elo);
                     
-                    tbody.innerHTML += `
+                    const row = `
                         <tr>
-                            <td>${index + 1}</td>
-                            <td>**${p.name}**</td>
-                            <td>${p.elo.Vanilla}</td>
-                            <td class="tier-${tier.toLowerCase()}">${tier}</td>
+                            <td class="rank">${i + 1}</td>
+                            <td class="player-name">
+                                <img src="https://mc-heads.net/avatar/${p.name}/24" alt="head">
+                                ${p.name}
+                            </td>
+                            <td class="elo">${elo}</td>
+                            <td><span class="tier-tag tier-${tier.toLowerCase()}">${tier}</span></td>
                         </tr>
                     `;
+                    tbody.innerHTML += row;
                 });
             });
-    </script>
+    }
+
+    loadLeaderboard();
+</script>
+
 </body>
 </html>
