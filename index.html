@@ -3,184 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraktu's Basement | MCTiers Style</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Fraktu's Basement | Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
-        
         :root {
-            --bg: #0a0a0c;
-            --card: #121216;
-            --accent: #5865F2;
-            --border: #25252b;
-            --ht1: #ff4d4d; --ht2: #ff7675; --ht3: #fab1a0;
-            --lt1: #74b9ff; --lt2: #81ecec; --lt3: #55efc4; --lt4: #ffeaa7; --lt5: #b2bec3;
+            --bg-color: #0d0d0f;
+            --card-bg: #16161a;
+            --text-main: #ffffff;
+            --text-dim: #94a3b8;
+            --accent: #5865f2;
+            --border: rgba(255, 255, 255, 0.05);
+            
+            /* Tier Colors */
+            --ht1: #ffac33; --ht2: #ffcc33; --ht3: #ffee33;
+            --lt1: #bdc3c7; --lt2: #abb2b9; --lt3: #9ea7af;
+            --lt4: #cd7f32; --lt5: #a0522d;
         }
 
         body {
-            background-color: var(--bg);
-            color: white;
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        nav {
-            width: 100%;
-            background: rgba(18, 18, 22, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        .discord-btn {
+            background: var(--accent);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+
+        /* Nav Tabs */
+        .nav-tabs {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            position: sticky;
-            top: 0;
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            max-width: 95vw;
+            padding-bottom: 10px;
         }
 
-        .nav-btn {
-            background: transparent;
+        .tab {
+            background: var(--card-bg);
             border: 1px solid var(--border);
-            color: #888;
+            color: var(--text-dim);
             padding: 8px 16px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            transition: 0.3s;
+            white-space: nowrap;
         }
 
-        .nav-btn.active, .nav-btn:hover {
-            border-color: var(--accent);
+        .tab.active {
+            background: #25252b;
             color: white;
-            background: rgba(88, 101, 242, 0.1);
+            border-color: var(--accent);
         }
 
-        header { text-align: center; padding: 60px 20px; }
-        header h1 { font-weight: 800; font-size: 3rem; margin: 0; letter-spacing: -2px; }
-        
-        .discord-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            background: rgba(88, 101, 242, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 1px solid var(--accent);
-        }
-
-        .container {
+        /* Table Styles */
+        .leaderboard-container {
             width: 90%;
-            max-width: 1100px;
-            background: var(--card);
+            max-width: 1000px;
+            background: var(--card-bg);
+            border-radius: 12px;
             border: 1px solid var(--border);
-            border-radius: 16px;
-            margin-bottom: 100px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+            margin-bottom: 50px;
         }
 
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 20px; font-size: 0.75rem; text-transform: uppercase; color: #555; }
-        td { padding: 15px 20px; border-top: 1px solid var(--border); }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-        .player-cell { display: flex; align-items: center; gap: 15px; font-weight: 600; }
-        .player-cell img { border-radius: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        th {
+            text-align: left;
+            padding: 20px;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
 
-        .tier {
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .rank-col {
+            font-size: 1.2rem;
+            font-weight: 800;
+            font-style: italic;
+            width: 50px;
+            color: #333;
+        }
+
+        tr:nth-child(1) .rank-col { color: var(--ht1); }
+        tr:nth-child(2) .rank-col { color: var(--lt1); }
+        tr:nth-child(3) .rank-col { color: var(--lt4); }
+
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .player-head {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            image-rendering: pixelated;
+        }
+
+        .player-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .region-tag {
+            background: #1e1e24;
+            color: #ff4757;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .elo-val {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .tier-badge {
             padding: 4px 10px;
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 800;
-            text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .tier-ht1 { background: rgba(255, 77, 77, 0.15); color: var(--ht1); border: 1px solid var(--ht1); }
-        /* Repeat for other tiers */
-        .tier-lt5 { background: rgba(178, 190, 195, 0.15); color: var(--lt5); border: 1px solid var(--lt5); }
-
-        .elo-val { font-family: 'Courier New', monospace; font-weight: bold; color: #eee; }
+        .tier-ht1 { background: rgba(255, 172, 51, 0.1); color: var(--ht1); border-color: var(--ht1); }
+        .tier-lt1 { background: rgba(189, 195, 199, 0.1); color: var(--lt1); border-color: var(--lt1); }
+        .tier-lt5 { background: rgba(160, 82, 45, 0.1); color: var(--lt5); border-color: var(--lt5); }
     </style>
 </head>
 <body>
 
-<nav id="mode-nav"></nav>
+    <div class="header">
+        <h1>Fraktu's Basement</h1>
+        <a href="#" class="discord-btn">Official Tier Server</a>
+    </div>
 
-<header>
-    <h1>FRAKTU'S BASEMENT</h1>
-    <a href="https://discord.gg/uz4qSzDV2D" class="discord-link">
-        <i class="fab fa-discord"></i> Official Tier Server
-    </a>
-</header>
+    <div class="nav-tabs" id="mode-tabs">
+        </div>
 
-<div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Active Player</th>
-                <th>Rating</th>
-                <th>Tier</th>
-            </tr>
-        </thead>
-        <tbody id="leaderboard-body"></tbody>
-    </table>
-</div>
+    <div class="leaderboard-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Active Player</th>
+                    <th>Rating</th>
+                    <th>Tier</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+                </tbody>
+        </table>
+    </div>
 
-<script>
-    const MODES = ["Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
-    let currentMode = "Vanilla";
-
-    const nav = document.getElementById('mode-nav');
-    MODES.forEach(m => {
-        const b = document.createElement('button');
-        b.className = `nav-btn ${m === currentMode ? 'active' : ''}`;
-        b.innerText = m;
-        b.onclick = () => { 
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-            b.classList.add('active');
-            currentMode = m; load(); 
+    <script>
+        const GAMEMODES = ["Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
+        const TIER_THRESHOLDS = {
+            "HT1": 2500, "HT2": 2200, "HT3": 2000,
+            "LT1": 1800, "LT2": 1600, "LT3": 1400, "LT4": 1200, "LT5": 0
         };
-        nav.appendChild(b);
-    });
 
-    function getT(e) {
-        if (e >= 2500) return "HT1"; if (e >= 2200) return "HT2"; if (e >= 2000) return "HT3";
-        if (e >= 1800) return "LT1"; if (e >= 1600) return "LT2"; if (e >= 1400) return "LT3";
-        if (e >= 1200) return "LT4"; return "LT5";
-    }
+        let playersData = { players: {} };
+        let currentMode = "Vanilla";
 
-    function load() {
-        fetch('players.json?v=' + Date.now()).then(r => r.json()).then(data => {
+        function getTier(elo) {
+            for (const [tier, threshold] of Object.entries(TIER_THRESHOLDS)) {
+                if (elo >= threshold) return tier;
+            }
+            return "LT5";
+        }
+
+        async function fetchData() {
+            try {
+                const response = await fetch('players.json');
+                playersData = await response.json();
+                renderTabs();
+                renderTable(currentMode);
+            } catch (e) {
+                console.error("Could not load players.json", e);
+            }
+        }
+
+        function renderTabs() {
+            const container = document.getElementById('mode-tabs');
+            container.innerHTML = GAMEMODES.map(mode => `
+                <div class="tab ${mode === currentMode ? 'active' : ''}" onclick="switchMode('${mode}')">
+                    ${mode}
+                </div>
+            `).join('');
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            renderTabs();
+            renderTable(mode);
+        }
+
+        function renderTable(mode) {
             const body = document.getElementById('leaderboard-body');
             body.innerHTML = '';
-            
-            const players = Object.values(data.players)
-                .sort((a,b) => (b.elo[currentMode] || 1000) - (a.elo[currentMode] || 1000));
 
-            players.forEach((p, i) => {
-                const elo = p.elo[currentMode] || 1000;
-                const tier = getT(elo);
+            const sorted = Object.entries(playersData.players)
+                .map(([id, data]) => ({ id, ...data }))
+                .sort((a, b) => b.elo[mode] - a.elo[mode]);
+
+            sorted.forEach((p, i) => {
+                const elo = p.elo[mode] || 1000;
+                const tier = getTier(elo);
+                const ign = p.ign || p.name || "Steve"; // Fallback to Discord name if IGN missing
+
                 body.innerHTML += `
                     <tr>
-                        <td style="color:#444; font-weight:800; font-size:1.2rem;">${i+1}</td>
-                        <td class="player-cell">
-                            <img src="https://mc-heads.net/avatar/${p.ign || 'Steve'}/32">
-                            ${p.name} <span style="color:#444; font-size:0.8rem;">(${p.ign})</span>
+                        <td class="rank-col">${i + 1}</td>
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://mc-heads.net/avatar/${ign}/32" class="player-head">
+                                <div class="player-info">
+                                    <span class="player-name">${ign} <span class="region-tag">NA</span></span>
+                                </div>
+                            </div>
                         </td>
                         <td class="elo-val">${elo}</td>
-                        <td><span class="tier tier-${tier.toLowerCase()}">${tier}</span></td>
+                        <td><span class="tier-badge tier-${tier.toLowerCase()}">${tier}</span></td>
                     </tr>
                 `;
             });
-        });
-    }
-    load();
-</script>
+        }
+
+        fetchData();
+        // Refresh every 30 seconds
+        setInterval(fetchData, 30000);
+    </script>
 </body>
 </html>
