@@ -2,6 +2,7 @@
     "players": {
         "1087110879792873552": {
             "name": "asherd1224",
+            "ign": "Fraktu_",
             "elo": {
                 "LTMs": 1000,
                 "Vanilla": 1000,
@@ -15,7 +16,5 @@
             }
         }
     },
-    "history": [
-        
-    ]
+    "history": []
 }
