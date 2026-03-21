@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FRAKTUS BASEMENT | Professional Rankings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Fraktu's Basement | Rankings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0b10;
             --panel: #111218;
             --accent: #5865f2;
             --text-dim: #72767d;
-            /* Official MCTiers Tier Colors */
             --ht1: #ffb13b; --ht2: #ffcc33; --ht3: #ffee33;
             --lt1: #cbd5e0; --lt2: #a0aec0; --lt3: #718096;
             --lt4: #cd7f32; --lt5: #444444;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -25,7 +25,7 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Navbar & Search */
+        /* Navbar */
         .navbar {
             width: 100%; max-width: 1200px;
             display: flex; justify-content: space-between; align-items: center;
@@ -33,25 +33,40 @@
         }
         .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; }
         .logo span { color: var(--ht1); }
+
+        .nav-right { display: flex; align-items: center; gap: 20px; }
+
+        .discord-btn {
+            background: var(--accent); color: white;
+            padding: 10px 18px; border-radius: 8px;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem;
+            display: flex; align-items: center; gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.2);
+        }
+        .discord-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4); filter: brightness(1.1); }
+
         .search-box {
             background: #1a1b23; border: 1px solid rgba(255,255,255,0.1);
-            padding: 10px 15px; border-radius: 8px; color: white; width: 280px;
-            outline: none; transition: 0.2s;
+            padding: 10px 15px; border-radius: 8px; color: white; width: 220px;
+            outline: none; transition: var(--transition);
         }
-        .search-box:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(88, 101, 242, 0.2); }
+        .search-box:focus { border-color: var(--accent); width: 280px; background: #22232b; }
 
-        /* Tabs Navigation */
+        /* Tabs */
         .tabs-container {
-            display: flex; gap: 10px; margin-bottom: 40px;
+            display: flex; gap: 8px; margin-bottom: 40px;
             background: rgba(255,255,255,0.03); padding: 8px; border-radius: 12px;
         }
         .tab {
             padding: 10px 22px; border-radius: 8px; cursor: pointer;
-            font-weight: 700; color: var(--text-dim); transition: 0.3s;
+            font-weight: 700; color: var(--text-dim); transition: var(--transition);
+            user-select: none;
         }
-        .tab.active { background: var(--panel); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .tab:hover { color: white; background: rgba(255,255,255,0.05); transform: translateY(-1px); }
+        .tab.active { background: var(--panel); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transform: scale(1.05); }
 
-        /* Table Design */
+        /* Table */
         .lb-card {
             width: 100%; max-width: 1150px;
             background: var(--panel); border-radius: 16px;
@@ -61,33 +76,38 @@
         table { width: 100%; border-collapse: collapse; }
         th { text-align: left; padding: 20px; color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         
-        tr { transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.02); }
-        tr:hover { background: rgba(255,255,255,0.03); transform: translateY(-2px); }
+        tr { transition: var(--transition); border-bottom: 1px solid rgba(255,255,255,0.02); }
+        tr:hover { background: rgba(255,255,255,0.03); }
 
         .rank-num {
             padding-left: 35px; font-family: 'Montserrat', sans-serif;
             font-weight: 900; font-size: 1.5rem; font-style: italic; color: rgba(255,255,255,0.05);
+            transition: var(--transition);
         }
+        tr:hover .rank-num { transform: scale(1.2) translateX(5px); }
         tr:nth-child(1) .rank-num { color: var(--ht1); text-shadow: 0 0 15px rgba(255,177,59,0.3); }
 
         .player-cell { display: flex; align-items: center; gap: 18px; padding: 18px 0; }
-        .avatar { width: 44px; height: 44px; border-radius: 8px; image-rendering: pixelated; }
+        .avatar { width: 44px; height: 44px; border-radius: 8px; image-rendering: pixelated; transition: var(--transition); }
+        tr:hover .avatar { transform: rotate(-5deg) scale(1.1); }
+        
         .p-name { font-weight: 700; font-size: 1.15rem; }
-        .p-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
+        .p-sub { font-size: 0.75rem; color: var(--text-dim); }
 
         .region-badge {
             background: rgba(255, 71, 87, 0.1); color: #ff4757;
             padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.7rem;
         }
 
-        /* Tier Icons Grid */
         .tier-list { display: flex; gap: 6px; }
         .tier-icon {
             width: 26px; height: 26px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-size: 0.55rem; font-weight: 900; color: #000;
             border: 1px solid rgba(255,255,255,0.1); cursor: help;
+            transition: var(--transition);
         }
+        .tier-icon:hover { transform: scale(1.3) translateY(-5px); z-index: 10; }
 
         .t-ht1 { background: var(--ht1); box-shadow: 0 0 8px rgba(255,177,59,0.3); }
         .t-lt1 { background: var(--lt1); }
@@ -100,7 +120,10 @@
 
     <div class="navbar">
         <div class="logo">FRAKTU'S <span>BASEMENT</span></div>
-        <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="doSearch()">
+        <div class="nav-right">
+            <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="doSearch()">
+            <a href="https://discord.gg/YOUR_INVITE" target="_blank" class="discord-btn">JOIN DISCORD</a>
+        </div>
     </div>
 
     <div class="tabs-container" id="tab-list"></div>
@@ -137,11 +160,13 @@
         }
 
         async function refresh() {
-            const res = await fetch('players.json');
-            const data = await res.json();
-            players = data.players;
-            renderTabs();
-            render();
+            try {
+                const res = await fetch('players.json');
+                const data = await res.json();
+                players = data.players;
+                renderTabs();
+                render();
+            } catch(e) { console.log("Waiting for players.json..."); }
         }
 
         function renderTabs() {
@@ -156,24 +181,14 @@
             const body = document.getElementById('lb-body');
             body.innerHTML = '';
 
-            const playerList = Object.values(players).map(p => {
-                // Calculate Overall Elo if needed
-                const avgElo = Math.round(Object.values(p.elo).reduce((a, b) => a + b, 0) / Object.values(p.elo).length);
-                return { ...p, overallElo: avgElo };
-            });
-
-            const sorted = playerList
+            const sorted = Object.values(players)
+                .map(p => ({ ...p, overallElo: Math.round(Object.values(p.elo).reduce((a,b)=>a+b,0)/9) }))
                 .filter(p => (p.ign || p.name).toLowerCase().includes(filter.toLowerCase()))
-                .sort((a, b) => {
-                    const scoreA = currentMode === "Overall" ? a.overallElo : a.elo[currentMode];
-                    const scoreB = currentMode === "Overall" ? b.overallElo : b.elo[currentMode];
-                    return scoreB - scoreA;
-                });
+                .sort((a,b) => (currentMode === "Overall" ? b.overallElo - a.overallElo : b.elo[currentMode] - a.elo[currentMode]));
 
             sorted.forEach((p, i) => {
                 const ign = p.ign || p.name;
                 const score = currentMode === "Overall" ? p.overallElo : p.elo[currentMode];
-                
                 const tierIcons = MODES.filter(m => m !== "Overall").map(m => {
                     const t = getTier(p.elo[m]);
                     return `<div class="tier-icon t-${t.toLowerCase()}" title="${m}: ${t}">${t}</div>`;
@@ -185,10 +200,7 @@
                         <td>
                             <div class="player-cell">
                                 <img src="https://mc-heads.net/avatar/${ign}/44" class="avatar">
-                                <div>
-                                    <div class="p-name">${ign}</div>
-                                    <div class="p-sub">Combat Master</div>
-                                </div>
+                                <div><div class="p-name">${ign}</div><div class="p-sub">Combat Master</div></div>
                             </div>
                         </td>
                         <td><span class="region-badge">NA</span></td>
@@ -200,9 +212,8 @@
         }
 
         function doSearch() { render(document.getElementById('search').value); }
-
         refresh();
-        setInterval(refresh, 20000); // Auto-refresh data every 20 seconds
+        setInterval(refresh, 15000);
     </script>
 </body>
 </html>
