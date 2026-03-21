@@ -3,177 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraktu's Basement | MCTiers Style</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>FRAKTUBASY | Professional Rankings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0a0b10;
             --panel: #111218;
             --accent: #5865f2;
             --text-dim: #72767d;
+            /* Official MCTiers Tier Colors */
             --ht1: #ffb13b; --ht2: #ffcc33; --ht3: #ffee33;
             --lt1: #cbd5e0; --lt2: #a0aec0; --lt3: #718096;
-            --lt4: #cd7f32; --lt5: #a0522d;
+            --lt4: #cd7f32; --lt5: #444444;
         }
 
         body {
             background-color: var(--bg);
             color: white;
             font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin: 0; padding: 0 5%;
+            display: flex; flex-direction: column; align-items: center;
         }
 
-        /* Top Navbar */
+        /* Navbar & Search */
         .navbar {
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
+            width: 100%; max-width: 1200px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 30px 0;
         }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            color: #fff;
-            letter-spacing: -1px;
-        }
-
+        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; }
         .logo span { color: var(--ht1); }
-
         .search-box {
-            background: #1a1b23;
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 8px;
-            color: white;
-            width: 250px;
+            background: #1a1b23; border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 15px; border-radius: 8px; color: white; width: 280px;
+            outline: none; transition: 0.2s;
         }
+        .search-box:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(88, 101, 242, 0.2); }
 
-        /* Tabs */
+        /* Tabs Navigation */
         .tabs-container {
-            display: flex;
-            gap: 15px;
-            margin: 40px 0;
-            background: rgba(255,255,255,0.03);
-            padding: 10px;
-            border-radius: 12px;
+            display: flex; gap: 10px; margin-bottom: 40px;
+            background: rgba(255,255,255,0.03); padding: 8px; border-radius: 12px;
         }
-
         .tab {
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 700;
-            color: var(--text-dim);
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 10px 22px; border-radius: 8px; cursor: pointer;
+            font-weight: 700; color: var(--text-dim); transition: 0.3s;
         }
+        .tab.active { background: var(--panel); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 
-        .tab:hover { background: rgba(255,255,255,0.05); }
-        .tab.active { background: var(--panel); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-
-        /* Leaderboard Table */
+        /* Table Design */
         .lb-card {
-            width: 100%;
-            max-width: 1100px;
-            background: var(--panel);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
+            width: 100%; max-width: 1150px;
+            background: var(--panel); border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05); overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-
         table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 20px; color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+        th { text-align: left; padding: 20px; color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         
-        tr { transition: 0.2s; border-bottom: 1px solid rgba(255,255,255,0.02); cursor: pointer; }
-        tr:hover { background: rgba(255,255,255,0.02); transform: scale(1.005); }
+        tr { transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1); border-bottom: 1px solid rgba(255,255,255,0.02); }
+        tr:hover { background: rgba(255,255,255,0.03); transform: translateY(-2px); }
 
         .rank-num {
-            padding-left: 30px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.4rem;
-            font-style: italic;
-            color: rgba(255,255,255,0.1);
+            padding-left: 35px; font-family: 'Montserrat', sans-serif;
+            font-weight: 900; font-size: 1.5rem; font-style: italic; color: rgba(255,255,255,0.05);
         }
-
         tr:nth-child(1) .rank-num { color: var(--ht1); text-shadow: 0 0 15px rgba(255,177,59,0.3); }
-        tr:nth-child(2) .rank-num { color: var(--lt1); }
-        tr:nth-child(3) .rank-num { color: var(--lt4); }
 
-        .player-cell { display: flex; align-items: center; gap: 15px; padding: 15px 0; }
-        .avatar { width: 42px; height: 42px; border-radius: 6px; image-rendering: pixelated; background: #222; }
-        
-        .p-name { font-weight: 700; font-size: 1.1rem; }
-        .p-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+        .player-cell { display: flex; align-items: center; gap: 18px; padding: 18px 0; }
+        .avatar { width: 44px; height: 44px; border-radius: 8px; image-rendering: pixelated; }
+        .p-name { font-weight: 700; font-size: 1.15rem; }
+        .p-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
 
         .region-badge {
-            background: rgba(255, 71, 87, 0.1);
-            color: #ff4757;
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-weight: 900;
-            font-size: 0.7rem;
+            background: rgba(255, 71, 87, 0.1); color: #ff4757;
+            padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.7rem;
         }
 
-        .tier-list { display: flex; gap: 5px; }
+        /* Tier Icons Grid */
+        .tier-list { display: flex; gap: 6px; }
         .tier-icon {
-            width: 24px; height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.5rem;
-            font-weight: 900;
-            border: 1px solid rgba(255,255,255,0.1);
-            position: relative;
-        }
-        
-        /* Tooltip style hover */
-        .tier-icon:hover::after {
-            content: attr(data-mode);
-            position: absolute;
-            bottom: 30px;
-            background: #000;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 10px;
-            white-space: nowrap;
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.55rem; font-weight: 900; color: #000;
+            border: 1px solid rgba(255,255,255,0.1); cursor: help;
         }
 
-        .t-ht1 { background: var(--ht1); color: #000; }
-        .t-lt1 { background: var(--lt1); color: #000; }
-        .t-lt5 { background: #444; color: #fff; }
+        .t-ht1 { background: var(--ht1); box-shadow: 0 0 8px rgba(255,177,59,0.3); }
+        .t-lt1 { background: var(--lt1); }
+        .t-lt5 { background: var(--lt5); color: #ccc; }
 
+        .rating-col { text-align: right; padding-right: 35px; font-weight: 800; font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
     <div class="navbar">
         <div class="logo">FRAKTU<span>BASY</span></div>
-        <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="searchPlayer()">
+        <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="doSearch()">
     </div>
 
-    <div class="tabs-container" id="tabs"></div>
+    <div class="tabs-container" id="tab-list"></div>
 
     <div class="lb-card">
         <table>
             <thead>
                 <tr>
-                    <th style="width: 80px;">#</th>
+                    <th style="width: 100px;">#</th>
                     <th>Player</th>
                     <th>Region</th>
-                    <th>All Tiers</th>
-                    <th style="text-align: right; padding-right: 30px;">Rating</th>
+                    <th>Tiers</th>
+                    <th class="rating-col">Rating</th>
                 </tr>
             </thead>
             <tbody id="lb-body"></tbody>
@@ -181,9 +121,9 @@
     </div>
 
     <script>
-        const MODES = ["Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
-        let currentMode = "Vanilla";
-        let playersData = { players: {} };
+        const MODES = ["Overall", "Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
+        let currentMode = "Overall";
+        let players = {};
 
         function getTier(elo) {
             if (elo >= 2500) return "HT1";
@@ -196,43 +136,47 @@
             return "LT5";
         }
 
-        async function load() {
+        async function refresh() {
             const res = await fetch('players.json');
-            playersData = await res.json();
+            const data = await res.json();
+            players = data.players;
             renderTabs();
             render();
         }
 
         function renderTabs() {
-            document.getElementById('tabs').innerHTML = MODES.map(m => `
-                <div class="tab ${m === currentMode ? 'active' : ''}" onclick="setMode('${m}')">
-                    ${m}
-                </div>
+            document.getElementById('tab-list').innerHTML = MODES.map(m => `
+                <div class="tab ${m === currentMode ? 'active' : ''}" onclick="setMode('${m}')">${m}</div>
             `).join('');
         }
 
-        function setMode(m) {
-            currentMode = m;
-            renderTabs();
-            render();
-        }
+        function setMode(m) { currentMode = m; renderTabs(); render(); }
 
         function render(filter = "") {
             const body = document.getElementById('lb-body');
             body.innerHTML = '';
-            
-            const sorted = Object.values(playersData.players)
+
+            const playerList = Object.values(players).map(p => {
+                // Calculate Overall Elo if needed
+                const avgElo = Math.round(Object.values(p.elo).reduce((a, b) => a + b, 0) / Object.values(p.elo).length);
+                return { ...p, overallElo: avgElo };
+            });
+
+            const sorted = playerList
                 .filter(p => (p.ign || p.name).toLowerCase().includes(filter.toLowerCase()))
-                .sort((a, b) => b.elo[currentMode] - a.elo[currentMode]);
+                .sort((a, b) => {
+                    const scoreA = currentMode === "Overall" ? a.overallElo : a.elo[currentMode];
+                    const scoreB = currentMode === "Overall" ? b.overallElo : b.elo[currentMode];
+                    return scoreB - scoreA;
+                });
 
             sorted.forEach((p, i) => {
                 const ign = p.ign || p.name;
-                const elo = p.elo[currentMode];
+                const score = currentMode === "Overall" ? p.overallElo : p.elo[currentMode];
                 
-                // Create the row of mini tier icons
-                const tierIcons = MODES.map(m => {
+                const tierIcons = MODES.filter(m => m !== "Overall").map(m => {
                     const t = getTier(p.elo[m]);
-                    return `<div class="tier-icon t-${t.toLowerCase()}" data-mode="${m}">${t}</div>`;
+                    return `<div class="tier-icon t-${t.toLowerCase()}" title="${m}: ${t}">${t}</div>`;
                 }).join('');
 
                 body.innerHTML += `
@@ -240,7 +184,7 @@
                         <td class="rank-num">${i + 1}</td>
                         <td>
                             <div class="player-cell">
-                                <img src="https://mc-heads.net/avatar/${ign}" class="avatar">
+                                <img src="https://mc-heads.net/avatar/${ign}/44" class="avatar">
                                 <div>
                                     <div class="p-name">${ign}</div>
                                     <div class="p-sub">Combat Master</div>
@@ -249,19 +193,16 @@
                         </td>
                         <td><span class="region-badge">NA</span></td>
                         <td><div class="tier-list">${tierIcons}</div></td>
-                        <td style="text-align: right; padding-right: 30px; font-weight: 800;">${elo}</td>
+                        <td class="rating-col">${score}</td>
                     </tr>
                 `;
             });
         }
 
-        function searchPlayer() {
-            const val = document.getElementById('search').value;
-            render(val);
-        }
+        function doSearch() { render(document.getElementById('search').value); }
 
-        load();
-        setInterval(load, 15000);
+        refresh();
+        setInterval(refresh, 20000); // Auto-refresh data every 20 seconds
     </script>
 </body>
 </html>
