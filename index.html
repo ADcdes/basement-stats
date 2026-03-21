@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fraktu's Basement | Leaderboard</title>
+    <style>
+        body { background: #1a1a1a; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        .container { max-width: 900px; margin: auto; padding: 50px; }
+        .card { background: #252525; border-radius: 15px; padding: 20px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        h1 { color: #7289da; text-transform: uppercase; letter-spacing: 2px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { border-bottom: 2px solid #444; padding: 10px; color: #aaa; }
+        td { padding: 15px; border-bottom: 1px solid #333; }
+        .tier-ht1 { color: #ff5555; font-weight: bold; text-shadow: 0 0 5px #ff5555; }
+        .tier-lt5 { color: #aaaaaa; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏆 Basement Rankings</h1>
+        <div class="card">
+            <table id="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Vanilla Elo</th>
+                        <th>Tier</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // This script reads your players.json
+        fetch('players.json')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('table-body');
+                const players = Object.values(data.players).sort((a, b) => b.elo.Vanilla - a.elo.Vanilla);
+                
+                players.forEach((p, index) => {
+                    let tier = "LT5"; // Simple version for the web logic
+                    if (p.elo.Vanilla >= 2500) tier = "HT1";
+                    else if (p.elo.Vanilla >= 2000) tier = "HT3";
+                    
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>**${p.name}**</td>
+                            <td>${p.elo.Vanilla}</td>
+                            <td class="tier-${tier.toLowerCase()}">${tier}</td>
+                        </tr>
+                    `;
+                });
+            });
+    </script>
+</body>
+</html>
