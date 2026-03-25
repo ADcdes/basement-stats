@@ -179,13 +179,18 @@
         let currentMode = "Overall";
         let players = {};
 
-        // Important: Update these Elo numbers to match what your Python bot considers HT1 vs LT1.
+        
         function getTierLabel(elo) {
-            if (elo >= 2600) return "HT1"; if (elo >= 2400) return "LT1";
-            if (elo >= 2200) return "HT2"; if (elo >= 2000) return "LT2";
-            if (elo >= 1800) return "HT3"; if (elo >= 1600) return "LT3";
-            if (elo >= 1400) return "HT4"; if (elo >= 1200) return "LT4";
-            if (elo >= 1000) return "HT5"; return "LT5";
+            if (elo >= 2400) return "HT1"; 
+            if (elo >= 2200) return "LT1";
+            if (elo >= 2000) return "HT2"; 
+            if (elo >= 1800) return "LT2";
+            if (elo >= 1600) return "HT3"; 
+            if (elo >= 1400) return "LT3";
+            if (elo >= 1300) return "HT4"; 
+            if (elo >= 1200) return "LT4";
+            if (elo >= 1100) return "HT5"; 
+            return "LT5";
         }
 
         async function refresh() {
