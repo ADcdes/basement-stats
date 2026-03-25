@@ -10,7 +10,7 @@
                 "Pot": 1000,
                 "NethOP": 1000,
                 "SMP": 1000,
-                "Sword": 984,
+                "Sword": 969,
                 "Axe": 1000,
                 "Mace": 1000
             }
@@ -25,7 +25,7 @@
                 "Pot": 1000,
                 "NethOP": 1000,
                 "SMP": 1000,
-                "Sword": 1016,
+                "Sword": 1031,
                 "Axe": 1000,
                 "Mace": 1000
             }
@@ -53,6 +53,13 @@
             "mode": "Sword",
             "gain": 16,
             "time": "03/25 11:02"
+        },
+        {
+            "winner": "CH1CK3N_195",
+            "loser": "Fraktu_",
+            "mode": "Sword",
+            "gain": 15,
+            "time": "03/25 16:24"
         }
     ]
 }
