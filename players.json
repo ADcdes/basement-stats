@@ -10,7 +10,7 @@
                 "Pot": 1000,
                 "NethOP": 1000,
                 "SMP": 1000,
-                "Sword": 988,
+                "Sword": 973,
                 "Axe": 1000,
                 "Mace": 1000
             }
@@ -40,7 +40,7 @@
                 "Pot": 1000,
                 "NethOP": 1000,
                 "SMP": 1000,
-                "Sword": 1000,
+                "Sword": 1015,
                 "Axe": 1400,
                 "Mace": 1000
             }
@@ -67,6 +67,17 @@
             "mode": "Sword",
             "gain": 19,
             "time": "03/25 16:31"
+        },
+        {
+            "winner_id": "1482680786691031121",
+            "loser_id": "1087110879792873552",
+            "winner": "Lowky_Nexor",
+            "loser": "Fraktu_",
+            "mode": "Sword",
+            "gain": 15,
+            "w_elo_before": 1000,
+            "l_elo_before": 988,
+            "time": "03/26 10:19"
         }
     ]
 }
