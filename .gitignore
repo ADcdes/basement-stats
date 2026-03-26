@@ -1,1 +1,16 @@
-bot.py 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.egg-info/
+
+# Secrets — NEVER commit these
+.env
+bot.py
+# OS junk
+.DS_Store
+Thumbs.db

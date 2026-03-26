@@ -14,15 +14,13 @@
             --accent: #5865f2;
             --text-main: #ffffff;
             --text-dim: #8e9297;
-            
-            /* The 10 Tier Colors (MCTiers Style) */
-            --ht1: #ff2a2a; --lt1: #ff5555; /* Reds */
-            --ht2: #ff7f00; --lt2: #ffa040; /* Oranges */
-            --ht3: #ffcc00; --lt3: #ffe066; /* Golds */
-            --ht4: #4caf50; --lt4: #81c784; /* Greens */
-            --ht5: #5865f2; --lt5: #8ea1e1; /* Blues */
 
-            /* Medals */
+            --ht1: #ff2a2a; --lt1: #ff5555;
+            --ht2: #ff7f00; --lt2: #ffa040;
+            --ht3: #ffcc00; --lt3: #ffe066;
+            --ht4: #4caf50; --lt4: #81c784;
+            --ht5: #5865f2; --lt5: #8ea1e1;
+
             --gold: #FFD700; --silver: #C0C0C0; --bronze: #CD7F32;
         }
 
@@ -36,21 +34,24 @@
             min-height: 100vh;
         }
 
-        /* Navbar & Buttons */
+        /* ── Navbar ── */
         .navbar {
             width: 100%; max-width: 1300px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 30px 0;
         }
-        .logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem; letter-spacing: -1px; cursor: pointer; text-transform: uppercase; font-style: italic; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .logo {
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem;
+            letter-spacing: -1px; cursor: pointer; text-transform: uppercase;
+            font-style: italic; text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
         .logo span { color: var(--ht2); }
-
         .nav-right { display: flex; gap: 15px; align-items: center; }
 
         .search-box {
             background: var(--panel); border: 1px solid rgba(255,255,255,0.08);
-            padding: 12px 20px; border-radius: 8px; color: white; width: 220px; outline: none;
-            transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+            padding: 12px 20px; border-radius: 8px; color: white; width: 220px;
+            outline: none; transition: 0.3s; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
         }
         .search-box:focus { border-color: var(--ht2); width: 260px; }
 
@@ -59,260 +60,348 @@
             padding: 12px 20px; border-radius: 8px; font-weight: 800; font-size: 0.9rem;
             transition: 0.2s; box-shadow: 0 4px 15px rgba(88,101,242,0.3);
         }
-        .discord-btn:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 6px 20px rgba(88,101,242,0.5); }
+        .discord-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
-        /* Tabs */
+        /* ── Tabs ── */
         .tabs-container {
-            display: flex; gap: 8px; margin-bottom: 40px; width: 100%; max-width: 1300px;
-            overflow-x: auto; padding-bottom: 5px;
+            display: flex; gap: 8px; margin-bottom: 40px;
+            width: 100%; max-width: 1300px; overflow-x: auto; padding-bottom: 5px;
         }
         .tab {
             padding: 12px 24px; border-radius: 8px; cursor: pointer;
             font-weight: 700; color: var(--text-dim); transition: 0.2s;
-            background: rgba(22, 25, 35, 0.6); border: 1px solid rgba(255,255,255,0.02);
+            background: rgba(22,25,35,0.6); border: 1px solid rgba(255,255,255,0.02);
+            white-space: nowrap;
         }
         .tab:hover { background: var(--panel-light); color: white; transform: translateY(-2px); }
         .tab.active { background: var(--ht2); color: #000; box-shadow: 0 4px 15px rgba(255,127,0,0.3); border-color: transparent; }
 
-        /* Smooth Content Animation */
+        /* ── Content animation ── */
         #main-content { width: 100%; display: flex; justify-content: center; }
-        .fade-in { animation: fadeIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .fade-in { animation: fadeIn 0.4s cubic-bezier(0.2,0.8,0.2,1) forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* OVERALL TABLE VIEW */
-        .overall-container { 
-            width: 100%; max-width: 1300px; background: var(--panel); 
-            border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        /* ── Overall table ── */
+        .overall-container {
+            width: 100%; max-width: 1300px; background: var(--panel);
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.03);
         }
         table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 20px; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.05); letter-spacing: 1px; }
-        
+        th {
+            text-align: left; padding: 20px; color: var(--text-dim);
+            font-size: 0.75rem; text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.05); letter-spacing: 1px;
+        }
         tr { border-bottom: 1px solid rgba(255,255,255,0.02); transition: 0.2s; cursor: pointer; position: relative; }
         tr:hover { background: rgba(255,255,255,0.04); }
-        
-        .rank-col { font-family: 'Montserrat'; font-style: italic; font-weight: 900; font-size: 1.4rem; padding-left: 30px; opacity: 0.3; transition: 0.3s; }
-        
-        /* Banners and Medals for Top 3 */
-        .row-rank-1 .rank-col { color: var(--gold); opacity: 1; text-shadow: 0 0 15px rgba(255,215,0,0.5); }
+
+        .rank-col { font-family: 'Montserrat'; font-style: italic; font-weight: 900; font-size: 1.4rem; padding-left: 30px; opacity: 0.3; }
+
+        .row-rank-1 .rank-col { color: var(--gold);   opacity: 1; text-shadow: 0 0 15px rgba(255,215,0,0.5); }
         .row-rank-2 .rank-col { color: var(--silver); opacity: 1; text-shadow: 0 0 15px rgba(192,192,192,0.5); }
         .row-rank-3 .rank-col { color: var(--bronze); opacity: 1; text-shadow: 0 0 15px rgba(205,127,50,0.5); }
 
         .banner { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%); display: none; }
-        .row-rank-1 .banner { display: block; background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+        .row-rank-1 .banner { display: block; background: var(--gold);   box-shadow: 0 0 10px var(--gold); }
         .row-rank-2 .banner { display: block; background: var(--silver); }
         .row-rank-3 .banner { display: block; background: var(--bronze); }
-        
+
         .p-cell { display: flex; align-items: center; gap: 15px; padding: 15px 0; }
         .avatar { width: 45px; height: 45px; border-radius: 8px; image-rendering: pixelated; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .p-name { font-weight: 800; font-size: 1.1rem; }
-        
-        /* Tooltips & Pills */
+
+        /* ── Tier pills & tooltips ── */
         .tier-pill-list { display: flex; gap: 6px; flex-wrap: wrap; }
         .tier-wrapper { position: relative; display: inline-block; }
         .tier-pill {
             padding: 5px 9px; border-radius: 4px; font-size: 0.7rem; font-weight: 900;
-            color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5); box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
-            transition: 0.2s;
+            color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2); transition: 0.2s;
         }
         .tier-wrapper:hover .tier-pill { transform: scale(1.1) translateY(-2px); }
-        
         .tooltip {
             visibility: hidden; position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
-            background: #000; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 0.75rem;
-            font-weight: 700; opacity: 0; transition: 0.2s; white-space: nowrap; pointer-events: none;
-            border: 1px solid rgba(255,255,255,0.1); z-index: 100; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: #000; color: #fff; padding: 6px 10px; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 700; opacity: 0; transition: 0.2s;
+            white-space: nowrap; pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.1); z-index: 100;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         .tier-wrapper:hover .tooltip { visibility: visible; opacity: 1; bottom: 140%; }
-        .tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: #000 transparent transparent transparent; }
-
-        /* GRID TIER VIEW (For Specific Modes) */
-        .tier-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;
-            width: 100%; max-width: 1300px; margin-bottom: 50px;
+        .tooltip::after {
+            content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px;
+            border-width: 5px; border-style: solid; border-color: #000 transparent transparent transparent;
         }
-        .tier-column { background: var(--panel); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.02); }
-        .tier-header { 
+
+        /* Dynamic subtitle under player name */
+        .p-subtitle {
+            font-size: 0.7rem; font-weight: 800; margin-top: 2px;
+            padding: 2px 6px; border-radius: 4px; display: inline-block;
+            color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* ── Grid tier view ── */
+        .tier-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 15px; width: 100%; max-width: 1300px; margin-bottom: 50px;
+        }
+        .tier-column {
+            background: var(--panel); border-radius: 12px; overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+        .tier-header {
             padding: 15px; text-align: center; font-weight: 900; font-size: 1.2rem;
-            font-family: 'Montserrat'; font-style: italic; border-bottom: 3px solid rgba(0,0,0,0.3);
+            font-family: 'Montserrat'; font-style: italic;
+            border-bottom: 3px solid rgba(0,0,0,0.3);
             text-shadow: 0 2px 4px rgba(0,0,0,0.3); color: white;
         }
-        /* Grid Header colors mapped to HT versions */
         .th-1 { background: var(--ht1); } .th-2 { background: var(--ht2); }
         .th-3 { background: var(--ht3); } .th-4 { background: var(--ht4); }
         .th-5 { background: var(--ht5); }
 
         .tier-player-card {
-            display: flex; align-items: center; justify-content: space-between; padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.02); transition: 0.2s; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.02);
+            transition: 0.2s; cursor: pointer;
         }
         .tier-player-card:hover { background: rgba(255,255,255,0.06); padding-left: 20px; }
-        
+
         .p-info-small { display: flex; align-items: center; gap: 10px; }
         .small-avatar { width: 26px; height: 26px; border-radius: 4px; image-rendering: pixelated; }
-        .small-name { font-size: 0.85rem; font-weight: 600; }
-        .small-tier-badge { font-size: 0.65rem; font-weight: 900; background: rgba(0,0,0,0.5); padding: 3px 6px; border-radius: 4px; color: var(--text-dim); }
+        .small-name   { font-size: 0.85rem; font-weight: 600; }
+        .small-tier-badge {
+            font-size: 0.65rem; font-weight: 900; background: rgba(0,0,0,0.5);
+            padding: 3px 6px; border-radius: 4px; color: var(--text-dim);
+        }
 
+        /* ── Empty state ── */
+        .empty-state {
+            padding: 60px 20px; text-align: center; color: var(--text-dim); width: 100%;
+        }
+        .empty-state h3 { font-size: 1.2rem; margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="logo" onclick="location.reload()">FRAKTU'S <span>BASEMENT</span></div>
-        <div class="nav-right">
-            <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="render()">
-            <a href="https://discord.gg/5rnJVnswzj" target="_blank" class="discord-btn">JOIN DISCORD</a>
-        </div>
+<div class="navbar">
+    <div class="logo" onclick="location.reload()">FRAKTU'S <span>BASEMENT</span></div>
+    <div class="nav-right">
+        <input type="text" class="search-box" id="search" placeholder="Search player..." onkeyup="render()">
+        <a href="https://discord.gg/5rnJVnswzj" target="_blank" class="discord-btn">JOIN DISCORD</a>
     </div>
+</div>
 
-    <div class="tabs-container" id="tab-list"></div>
+<div class="tabs-container" id="tab-list"></div>
+<div id="main-content"></div>
 
-    <div id="main-content">
-        </div>
+<script>
+    const MODES = ["Overall", "Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
+    let currentMode = "Overall";
+    let players = {};
 
-    <script>
-        // Use standard placeholders if no icons are provided yet.
-        const MODES = ["Overall", "Vanilla", "LTMs", "UHC", "Pot", "NethOP", "SMP", "Sword", "Axe", "Mace"];
-        let currentMode = "Overall";
-        let players = {};
+    // ── Tier helpers ────────────────────────────────────────────────────────────
+    function getTierLabel(elo) {
+        if (elo >= 2400) return "HT1";
+        if (elo >= 2200) return "LT1";
+        if (elo >= 2000) return "HT2";
+        if (elo >= 1800) return "LT2";
+        if (elo >= 1600) return "HT3";
+        if (elo >= 1400) return "LT3";
+        if (elo >= 1300) return "HT4";
+        if (elo >= 1200) return "LT4";
+        if (elo >= 1100) return "HT5";
+        return "LT5";
+    }
 
-        
-        function getTierLabel(elo) {
-            if (elo >= 2400) return "HT1"; 
-            if (elo >= 2200) return "LT1";
-            if (elo >= 2000) return "HT2"; 
-            if (elo >= 1800) return "LT2";
-            if (elo >= 1600) return "HT3"; 
-            if (elo >= 1400) return "LT3";
-            if (elo >= 1300) return "HT4"; 
-            if (elo >= 1200) return "LT4";
-            if (elo >= 1100) return "HT5"; 
-            return "LT5";
+    function getBestTierLabel(eloObj) {
+        const best = Math.max(...Object.values(eloObj));
+        return getTierLabel(best);
+    }
+
+    // Returns a readable label for the best tier, e.g. "High Tier 2"
+    const TIER_FULL = {
+        HT1: "High Tier 1", LT1: "Low Tier 1",
+        HT2: "High Tier 2", LT2: "Low Tier 2",
+        HT3: "High Tier 3", LT3: "Low Tier 3",
+        HT4: "High Tier 4", LT4: "Low Tier 4",
+        HT5: "High Tier 5", LT5: "Low Tier 5"
+    };
+
+    // ── Data fetching ────────────────────────────────────────────────────────────
+    async function refresh() {
+        try {
+            const res  = await fetch('players.json?t=' + Date.now());
+            const data = await res.json();
+            players = data.players;
+            renderTabs();
+            render();
+        } catch(e) {
+            console.log("Waiting for data...");
+        }
+    }
+
+    // ── Tabs ─────────────────────────────────────────────────────────────────────
+    function renderTabs() {
+        document.getElementById('tab-list').innerHTML = MODES.map(m => `
+            <div class="tab ${m === currentMode ? 'active' : ''}" onclick="setMode('${m}')">${m}</div>
+        `).join('');
+    }
+
+    function setMode(m) {
+        if (currentMode === m) return;
+        currentMode = m;
+        renderTabs();
+        render();
+    }
+
+    // ── Main render ──────────────────────────────────────────────────────────────
+    function render() {
+        const container = document.getElementById('main-content');
+        container.classList.remove('fade-in');
+        void container.offsetWidth; // force reflow to restart animation
+        container.classList.add('fade-in');
+
+        const search = document.getElementById('search').value.toLowerCase();
+        const filtered = Object.values(players).filter(p =>
+            (p.ign || p.name).toLowerCase().includes(search)
+        );
+
+        if (currentMode === "Overall") {
+            renderOverallTable(container, filtered);
+        } else {
+            renderTierGrid(container, filtered);
+        }
+    }
+
+    // ── Overall table ────────────────────────────────────────────────────────────
+    function renderOverallTable(container, list) {
+        list.sort((a, b) => {
+            const avg = p => Object.values(p.elo).reduce((s, e) => s + e, 0);
+            return avg(b) - avg(a);
+        });
+
+        if (list.length === 0) {
+            container.innerHTML = `<div class="empty-state"><h3>No players found</h3><p>Try a different search.</p></div>`;
+            return;
         }
 
-        async function refresh() {
-            try {
-                const res = await fetch('players.json?t=' + Date.now());
-                const data = await res.json();
-                players = data.players;
-                renderTabs();
-                render();
-            } catch(e) { console.log("Waiting for data..."); }
-        }
+        let html = `
+        <div class="overall-container">
+        <table><thead><tr>
+            <th style="width:70px">#</th>
+            <th>Player</th>
+            <th>Region</th>
+            <th>All Tiers</th>
+            <th style="text-align:right">Avg Rating</th>
+        </tr></thead><tbody>`;
 
-        function renderTabs() {
-            document.getElementById('tab-list').innerHTML = MODES.map(m => `
-                <div class="tab ${m === currentMode ? 'active' : ''}" onclick="setMode('${m}')">${m}</div>
-            `).join('');
-        }
+        list.forEach((p, i) => {
+            const ign       = p.ign || p.name;
+            const bestTier  = getBestTierLabel(p.elo);
+            const bestFull  = TIER_FULL[bestTier] || bestTier;
+            const tierColor = `var(--${bestTier.toLowerCase()})`;
+            const avg       = Math.round(Object.values(p.elo).reduce((s, e) => s + e, 0) / Object.keys(p.elo).length);
 
-        function setMode(m) { 
-            if(currentMode === m) return; // Don't animate if clicking same tab
-            currentMode = m; 
-            renderTabs(); 
-            render(); 
-        }
-
-        function render() {
-            const container = document.getElementById('main-content');
-            
-            // Trigger the CSS animation properly
-            container.classList.remove('fade-in');
-            void container.offsetWidth; // This forces the browser to restart the animation
-            container.classList.add('fade-in');
-
-            const search = document.getElementById('search').value.toLowerCase();
-            const filteredPlayers = Object.values(players).filter(p => (p.ign || p.name).toLowerCase().includes(search));
-
-            if (currentMode === "Overall") {
-                renderOverallTable(container, filteredPlayers);
-            } else {
-                renderTierGrid(container, filteredPlayers);
-            }
-        }
-
-        function renderOverallTable(container, list) {
-            list.sort((a,b) => {
-                const getAvg = p => Object.values(p.elo).reduce((s,e)=>s+e,0);
-                return getAvg(b) - getAvg(a);
-            });
-
-            let html = `<div class="overall-container"><table><thead><tr>
-                <th style="width:70px">#</th><th>Player</th><th>Region</th><th>All Tiers</th><th style="text-align:right">Avg Rating</th>
-            </tr></thead><tbody>`;
-
-            list.forEach((p, i) => {
-                const ign = p.ign || p.name;
-                
-                // Tooltips added back!
-                const tiersHtml = Object.entries(p.elo).map(([mode, elo]) => {
-                    const label = getTierLabel(elo);
-                    return `
-                    <div class="tier-wrapper">
-                        <div class="tier-pill" style="background:var(--${label.toLowerCase()})">${label}</div>
-                        <div class="tooltip">${mode}: ${label} (${elo})</div>
-                    </div>`;
-                }).join('');
-
-                const avg = Math.round(Object.values(p.elo).reduce((s,e)=>s+e,0) / (MODES.length - 1)); // -1 because "Overall" isn't in p.elo
-
-                // Add special classes for 1st, 2nd, and 3rd place colors/banners
-                let rankClass = "";
-                if (i === 0) rankClass = "row-rank-1";
-                if (i === 1) rankClass = "row-rank-2";
-                if (i === 2) rankClass = "row-rank-3";
-
-                html += `<tr class="${rankClass}">
-                    <div class="banner"></div>
-                    <td class="rank-col">${i+1}</td>
-                    <td><div class="p-cell"><img src="https://mc-heads.net/avatar/${ign}/45" class="avatar">
-                        <div><div class="p-name">${ign}</div><div style="font-size:0.7rem; color:var(--text-dim)">Basement Warrior</div></div>
-                    </div></td>
-                    <td><span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:800; border:1px solid rgba(255,255,255,0.1)">NA</span></td>
-                    <td><div class="tier-pill-list">${tiersHtml}</div></td>
-                    <td style="text-align:right; padding-right:20px; font-weight:900; color:var(--ht2); font-size: 1.1rem;">${avg}</td>
-                </tr>`;
-            });
-            container.innerHTML = html + `</tbody></table></div>`;
-        }
-
-        function renderTierGrid(container, list) {
-            // Group players into Columns 1-5 correctly based on the number in HT1/LT1, etc.
-            const columns = { 1:[], 2:[], 3:[], 4:[], 5:[] };
-            
-            list.forEach(p => {
-                const elo = p.elo[currentMode];
-                if(elo !== undefined) {
-                    const label = getTierLabel(elo);
-                    // This pulls the number out of "HT3", "LT4", etc., so LT3 goes to column 3.
-                    const tierNum = parseInt(label.replace(/[^0-9]/g, '')); 
-                    if(columns[tierNum]) columns[tierNum].push({ ...p, elo: elo, label: label });
-                }
-            });
-
-            let html = `<div class="tier-grid">`;
-            for(let i=1; i<=5; i++) {
-                html += `<div class="tier-column">
-                    <div class="tier-header th-${i}">Tier ${i}</div>
-                    ${columns[i].sort((a,b)=>b.elo-a.elo).map(p => `
-                        <div class="tier-player-card">
-                            <div class="p-info-small">
-                                <img src="https://mc-heads.net/avatar/${p.ign || p.name}/26" class="small-avatar">
-                                <span class="small-name">${p.ign || p.name}</span>
-                            </div>
-                            <span class="small-tier-badge">${p.label}</span>
-                        </div>
-                    `).join('')}
+            const tiersHtml = Object.entries(p.elo).map(([mode, elo]) => {
+                const label = getTierLabel(elo);
+                return `
+                <div class="tier-wrapper">
+                    <div class="tier-pill" style="background:var(--${label.toLowerCase()})">${label}</div>
+                    <div class="tooltip">${mode}: ${label} (${elo})</div>
                 </div>`;
+            }).join('');
+
+            let rankClass = "";
+            if (i === 0) rankClass = "row-rank-1";
+            if (i === 1) rankClass = "row-rank-2";
+            if (i === 2) rankClass = "row-rank-3";
+
+            html += `
+            <tr class="${rankClass}">
+                <div class="banner"></div>
+                <td class="rank-col">${i + 1}</td>
+                <td>
+                    <div class="p-cell">
+                        <img src="https://mc-heads.net/avatar/${ign}/45" class="avatar" loading="lazy">
+                        <div>
+                            <div class="p-name">${ign}</div>
+                            <span class="p-subtitle" style="background:${tierColor}">${bestFull}</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <span style="background:rgba(255,255,255,0.05); padding:4px 8px; border-radius:4px; font-size:0.7rem; font-weight:800; border:1px solid rgba(255,255,255,0.1)">NA</span>
+                </td>
+                <td><div class="tier-pill-list">${tiersHtml}</div></td>
+                <td style="text-align:right; padding-right:20px; font-weight:900; color:var(--ht2); font-size:1.1rem;">${avg}</td>
+            </tr>`;
+        });
+
+        container.innerHTML = html + `</tbody></table></div>`;
+    }
+
+    // ── Tier grid view ───────────────────────────────────────────────────────────
+    function renderTierGrid(container, list) {
+        const columns = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+
+        list.forEach(p => {
+            const elo = p.elo[currentMode];
+            if (elo !== undefined) {
+                const label   = getTierLabel(elo);
+                const tierNum = parseInt(label.replace(/[^0-9]/g, ''));
+                if (columns[tierNum]) {
+                    columns[tierNum].push({ ...p, currentElo: elo, label });
+                }
             }
-            container.innerHTML = html + `</div>`;
+        });
+
+        const totalPlayers = Object.values(columns).reduce((s, c) => s + c.length, 0);
+        if (totalPlayers === 0) {
+            container.innerHTML = `<div class="empty-state"><h3>No players in ${currentMode} yet</h3><p>Report some matches to populate this leaderboard!</p></div>`;
+            return;
         }
 
-        refresh();
-        setInterval(refresh, 30000);
-    </script>
+        let html = `<div class="tier-grid">`;
+        for (let i = 1; i <= 5; i++) {
+            const col = columns[i].sort((a, b) => b.currentElo - a.currentElo);
+            const htLabel = `HT${i}`;
+            const ltLabel = `LT${i}`;
+
+            const playerCards = col.map(p => `
+                <div class="tier-player-card">
+                    <div class="p-info-small">
+                        <img src="https://mc-heads.net/avatar/${p.ign || p.name}/26" class="small-avatar" loading="lazy">
+                        <span class="small-name">${p.ign || p.name}</span>
+                    </div>
+                    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:2px">
+                        <span class="small-tier-badge" style="color:var(--${p.label.toLowerCase()})">${p.label}</span>
+                        <span style="font-size:0.6rem; color:var(--text-dim)">${p.currentElo}</span>
+                    </div>
+                </div>
+            `).join('') || `<div style="padding:20px; text-align:center; color:var(--text-dim); font-size:0.8rem">Empty</div>`;
+
+            html += `
+            <div class="tier-column">
+                <div class="tier-header th-${i}">
+                    Tier ${i}
+                    <span style="font-size:0.65rem; opacity:0.7; margin-left:6px">${col.length} player${col.length !== 1 ? 's' : ''}</span>
+                </div>
+                ${playerCards}
+            </div>`;
+        }
+        container.innerHTML = html + `</div>`;
+    }
+
+    // ── Init ─────────────────────────────────────────────────────────────────────
+    refresh();
+    setInterval(refresh, 30000);
+</script>
 </body>
 </html>
