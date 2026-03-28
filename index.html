@@ -7,13 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg:          #0b0d12;
-            --bg2:         #10121a;
-            --panel:       #13161f;
-            --panel-hover: #191d28;
+            --bg:          #080a10;
+            --bg2:         #0d0f18;
+            --panel:       #11141d;
+            --panel-hover: #171b27;
             --border:      rgba(255,255,255,0.06);
+            --border-mid:  rgba(255,255,255,0.1);
             --text:        #e8eaf0;
-            --muted:       #5a6070;
+            --muted:       #4a5268;
             --accent:      #5865f2;
             --gold:        #e8a200;
             --silver:      #8090a8;
@@ -25,24 +26,33 @@
             --ht5: #4a70e8; --lt5: #7090e0;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+        body {
+            background: var(--bg); color: var(--text);
+            font-family: 'DM Sans', sans-serif; min-height: 100vh;
+            background-image: radial-gradient(ellipse 80% 40% at 50% -10%, rgba(88,101,242,0.07) 0%, transparent 70%);
+        }
 
         /* ── NAVBAR ──────────────────────────────────────────── */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 40px; height: 64px;
-            background: var(--bg2); border-bottom: 1px solid var(--border);
+            background: rgba(13,15,24,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
-        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 2px; color: var(--text); cursor: pointer; text-decoration: none; }
+        .logo {
+            font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem;
+            letter-spacing: 2px; color: var(--text); cursor: pointer; text-decoration: none;
+        }
         .logo span { color: var(--gold); }
         .nav-right { display: flex; gap: 12px; align-items: center; }
         .search-wrap {
             display: flex; align-items: center; gap: 8px;
-            background: var(--panel); border: 1px solid var(--border);
-            border-radius: 8px; padding: 0 14px; height: 38px; transition: border-color 0.2s;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0 14px; height: 38px; transition: border-color 0.2s, background 0.2s;
         }
-        .search-wrap:focus-within { border-color: rgba(255,255,255,0.2); }
+        .search-wrap:focus-within { border-color: var(--border-mid); background: rgba(255,255,255,0.06); }
         .search-wrap svg { color: var(--muted); flex-shrink: 0; }
         .search-wrap input { background: none; border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; width: 180px; outline: none; }
         .search-wrap input::placeholder { color: var(--muted); }
@@ -50,14 +60,16 @@
             display: flex; align-items: center; gap: 6px;
             background: var(--accent); color: #fff; text-decoration: none;
             padding: 0 16px; height: 38px; border-radius: 8px;
-            font-weight: 700; font-size: 0.85rem; transition: filter 0.2s, transform 0.15s;
+            font-weight: 700; font-size: 0.85rem; transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px rgba(88,101,242,0.3);
         }
-        .discord-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+        .discord-btn:hover { filter: brightness(1.15); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(88,101,242,0.45); }
 
         /* ── TABS ────────────────────────────────────────────── */
         .tabs-row {
             display: flex; gap: 4px; padding: 12px 40px 0;
             overflow-x: auto; border-bottom: 1px solid var(--border);
+            background: var(--bg2);
         }
         .tabs-row::-webkit-scrollbar { display: none; }
         .tab {
@@ -70,15 +82,14 @@
         .tab:hover { color: rgba(255,255,255,0.6); }
         .tab.active { color: #fff; border-bottom-color: #fff; }
 
-        /* Icon pill — dark rounded square like MCTiers */
         .tab-icon-wrap {
-            width: 52px; height: 52px; border-radius: 12px;
-            background: #1a1e2b; border: 1px solid var(--border);
+            width: 52px; height: 52px; border-radius: 14px;
+            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
         }
-        .tab:hover .tab-icon-wrap { background: #222638; border-color: rgba(255,255,255,0.12); }
-        .tab.active .tab-icon-wrap { background: #252a3d; border-color: rgba(255,255,255,0.18); }
+        .tab:hover .tab-icon-wrap { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); transform: translateY(-1px); }
+        .tab.active .tab-icon-wrap { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); }
 
         /* ── CONTENT ─────────────────────────────────────────── */
         .content { padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; }
@@ -86,8 +97,8 @@
         /* ── LEADERBOARD ─────────────────────────────────────── */
         .lb-head {
             display: grid; grid-template-columns: 110px 1fr 80px 1fr 120px;
-            padding: 10px 0; color: var(--muted); font-size: 0.7rem;
-            font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 12px 0; color: var(--muted); font-size: 0.65rem;
+            font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
             border-bottom: 1px solid var(--border);
         }
         .lb-head > * { padding: 0 8px; }
@@ -97,12 +108,17 @@
             align-items: center; border-bottom: 1px solid var(--border);
             transition: background 0.15s; cursor: pointer;
             position: relative; min-height: 80px;
-            animation: fadeUp 0.3s both;
+            animation: fadeUp 0.35s both;
         }
         .lb-row:hover { background: var(--panel-hover); }
-        .lb-row:nth-child(1){animation-delay:.03s} .lb-row:nth-child(2){animation-delay:.06s}
-        .lb-row:nth-child(3){animation-delay:.09s} .lb-row:nth-child(4){animation-delay:.12s}
-        .lb-row:nth-child(5){animation-delay:.15s}
+        .lb-row:nth-child(1){animation-delay:.04s} .lb-row:nth-child(2){animation-delay:.08s}
+        .lb-row:nth-child(3){animation-delay:.12s} .lb-row:nth-child(4){animation-delay:.16s}
+        .lb-row:nth-child(5){animation-delay:.20s}
+
+        /* Gold/silver/bronze left accent stripe */
+        .rank-1::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#e8a200,#c47800); border-radius:0 2px 2px 0; }
+        .rank-2::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#8090a8,#5a6878); border-radius:0 2px 2px 0; }
+        .rank-3::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#c0783a,#704020); border-radius:0 2px 2px 0; }
 
         .rank-cell { display: flex; align-items: center; height: 100%; padding-left: 16px; }
         .rank-badge {
@@ -111,33 +127,34 @@
             font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
             clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); flex-shrink: 0;
         }
-        .rank-1 .rank-badge { background: linear-gradient(135deg,#e8a200,#c47800); color:#fff; }
+        .rank-1 .rank-badge { background: linear-gradient(135deg,#f0b000,#c47800); color:#fff; }
         .rank-2 .rank-badge { background: linear-gradient(135deg,#8090a8,#5a6878); color:#fff; }
-        .rank-3 .rank-badge { background: linear-gradient(135deg,#a06030,#704020); color:#fff; }
-        .rank-other .rank-badge { background: rgba(255,255,255,0.05); color:var(--muted); font-size:1.5rem; }
+        .rank-3 .rank-badge { background: linear-gradient(135deg,#c0783a,#704020); color:#fff; }
+        .rank-other .rank-badge { background: rgba(255,255,255,0.04); color:var(--muted); font-size:1.5rem; }
 
         .player-cell { display: flex; align-items: center; gap: 14px; padding: 12px 8px; }
-        .player-avatar { width: 48px; height: 48px; border-radius: 6px; image-rendering: pixelated; flex-shrink: 0; }
-        .player-name { font-size: 1.15rem; font-weight: 800; color: #fff; line-height: 1.2; }
-        .player-rank-label { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 3px; }
-        .rank-diamond { width: 10px; height: 10px; border-radius: 2px; transform: rotate(45deg); flex-shrink: 0; }
+        .player-avatar { width: 48px; height: 48px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+        .player-name { font-size: 1.1rem; font-weight: 800; color: #fff; line-height: 1.2; }
+        .player-rank-label { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 3px; }
+        .rank-diamond { width: 8px; height: 8px; border-radius: 1px; transform: rotate(45deg); flex-shrink: 0; }
 
         .region-cell { display: flex; align-items: center; padding: 0 8px; }
-        .region-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; }
-        .region-NA { background:#c0392b; color:#fff; }
-        .region-EU { background:#27ae60; color:#fff; }
+        .region-badge { padding: 3px 9px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; }
+        .region-NA { background: rgba(192,57,43,0.25); color:#e05040; border: 1px solid rgba(192,57,43,0.3); }
+        .region-EU { background: rgba(39,174,96,0.2); color:#3cca78; border: 1px solid rgba(39,174,96,0.25); }
 
         /* Tier icon circles in the row */
-        .tiers-cell { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px; }
+        .tiers-cell { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px; }
         .tier-icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .tier-circle {
-            width: 40px; height: 40px; border-radius: 50%;
+            width: 38px; height: 38px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            background: #1a1e2b; border: 2px solid; transition: transform 0.15s;
+            background: rgba(255,255,255,0.04); border: 2px solid;
+            transition: transform 0.15s, box-shadow 0.15s;
             flex-shrink: 0;
         }
-        .tier-circle:hover { transform: scale(1.15); }
-        .tier-lbl { font-size: 0.58rem; font-weight: 900; letter-spacing: 0.3px; text-align: center; }
+        .tier-circle:hover { transform: scale(1.18); }
+        .tier-lbl { font-size: 0.55rem; font-weight: 900; letter-spacing: 0.3px; text-align: center; opacity: 0.85; }
 
         /* tier border + label colours */
         .t-ht1{border-color:var(--ht1)}.lbl-ht1{color:var(--ht1)}
@@ -151,35 +168,63 @@
         .t-ht5{border-color:var(--ht5)}.lbl-ht5{color:var(--ht5)}
         .t-lt5{border-color:var(--lt5)}.lbl-lt5{color:var(--lt5)}
 
+        /* glow tints on active tiers */
+        .t-ht1:hover{box-shadow:0 0 8px rgba(232,64,64,0.35)}
+        .t-lt1:hover{box-shadow:0 0 8px rgba(232,96,96,0.35)}
+        .t-ht2:hover{box-shadow:0 0 8px rgba(232,120,32,0.35)}
+        .t-lt2:hover{box-shadow:0 0 8px rgba(232,152,64,0.35)}
+        .t-ht3:hover{box-shadow:0 0 8px rgba(212,168,0,0.35)}
+        .t-lt3:hover{box-shadow:0 0 8px rgba(212,188,64,0.35)}
+        .t-ht4:hover{box-shadow:0 0 8px rgba(58,170,80,0.35)}
+        .t-lt4:hover{box-shadow:0 0 8px rgba(96,192,112,0.35)}
+        .t-ht5:hover{box-shadow:0 0 8px rgba(74,112,232,0.35)}
+        .t-lt5:hover{box-shadow:0 0 8px rgba(112,144,224,0.35)}
+
         .pts-cell { text-align: right; padding-right: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--muted); }
         .pts-cell span { color: var(--gold); }
 
         /* ── TIER GRID ───────────────────────────────────────── */
-        .tier-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 8px; }
-        .tier-col { background: var(--panel); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+        .tier-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-top: 10px; }
+        .tier-col {
+            background: var(--panel); border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+        .tier-col:hover { border-color: rgba(255,255,255,0.1); }
         .tier-col-header {
-            padding: 12px 16px; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px;
+            padding: 12px 16px; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.02);
         }
-        .tier-col-sub { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.35); font-family: 'DM Sans', sans-serif; }
+        .tier-col-sub { font-size: 0.62rem; font-weight: 800; color: rgba(255,255,255,0.3); font-family: 'DM Sans', sans-serif; letter-spacing: 0.5px; }
         .tier-player-row {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 10px 14px; border-bottom: 1px solid var(--border);
+            padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
             transition: background 0.15s; cursor: pointer;
         }
+        .tier-player-row:last-child { border-bottom: none; }
         .tier-player-row:hover { background: var(--panel-hover); }
         .tier-player-left { display: flex; align-items: center; gap: 8px; }
-        .tier-small-avatar { width: 24px; height: 24px; border-radius: 4px; image-rendering: pixelated; }
+        .tier-small-avatar { width: 24px; height: 24px; border-radius: 5px; image-rendering: pixelated; }
         .tier-small-name { font-size: 0.82rem; font-weight: 700; }
-        .tier-elo-num { font-size: 0.62rem; color: var(--muted); font-weight: 700; }
-        .empty-tier { padding: 16px; text-align: center; color: var(--muted); font-size: 0.8rem; }
+        .tier-elo-num { font-size: 0.6rem; color: var(--muted); font-weight: 700; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.5px; }
+        .empty-tier { padding: 20px; text-align: center; color: var(--muted); font-size: 0.78rem; }
 
         .empty-state { padding: 80px 20px; text-align: center; color: var(--muted); }
+        .empty-state h3 { font-size: 1.1rem; font-weight: 800; }
         .empty-state p { font-size: 0.9rem; margin-top: 8px; }
 
+        /* ── SECTION HEADER ──────────────────────────────────── */
+        .section-header {
+            display: flex; align-items: center; gap: 10px;
+            padding: 20px 0 12px; border-bottom: 1px solid var(--border); margin-bottom: 0;
+        }
+        .section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); }
+        .section-header .player-count { font-size: 0.7rem; font-weight: 800; color: var(--muted); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 20px; letter-spacing: 0.5px; }
+
         .fade-in { animation: fadeUp 0.35s cubic-bezier(0.2,0.8,0.2,1) both; }
-        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
     </style>
 </head>
 <body>
@@ -206,8 +251,7 @@
 <div class="content" id="content"></div>
 
 <script>
-// ── SVG Icons ──────────────────────────────────────────────────
-// Each returns an SVG string sized for the context (tab or circle)
+// ── Real MCTiers SVG Icons ─────────────────────────────────────
 const ICONS = {
     Overall: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
         <path fill="#ffaf00" d="M859.15 273.15v63.71c0 178.72-143.67 421.78-322.07 425.6-1.59.32-2.87.32-4.46.32-180.31 0-326.53-245.61-326.53-425.92v-132c0-90.15 73.27-95.14 163.42-95.14h326.21c90.16.01 163.43 73.28 163.43 163.43"/>
@@ -293,16 +337,9 @@ const ICONS = {
 
 // ── Constants ─────────────────────────────────────────────────
 const MODES = ["Overall","Vanilla","LTMs","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
-const ICON_COLORS = {
-    Overall:'#e8a200', LTMs:'#9aa0b0', Vanilla:'#a070e0', UHC:'#e04060',
-    Pot:'#40b8d8', NethOP:'#9060c8', SMP:'#30c080', Sword:'#50b8e8',
-    Axe:'#40a8d0', Mace:'#8090a0'
-};
 const TIER_PTS = { HT1:50,LT1:45,HT2:40,LT2:35,HT3:30,LT3:25,HT4:20,LT4:15,HT5:10,LT5:5 };
 const COMBAT_RANKS = [[380,"Combat Legend"],[280,"Combat Master"],[190,"Combat Ace"],[120,"Combat Expert"],[60,"Combat Warrior"],[0,"Combat Rookie"]];
 const RANK_COLORS  = {"Combat Legend":"#e84040","Combat Master":"#e87820","Combat Ace":"#d4a800","Combat Expert":"#3aaa50","Combat Warrior":"#4a70e8","Combat Rookie":"#5a6070"};
-
-// Mode → gamemode key (modes in GAMEMODES order for tier row display)
 const DISPLAY_MODES = ["LTMs","Vanilla","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
 
 let currentMode = "Overall";
@@ -318,14 +355,11 @@ function getTier(elo) {
 function totalPoints(p) { return Object.values(p.elo).reduce((s,e)=>s+(TIER_PTS[getTier(e)]||0),0); }
 function combatRank(pts) { for(const[t,l]of COMBAT_RANKS)if(pts>=t)return l; return"Combat Rookie"; }
 
-// Build a tier circle for the leaderboard row
 function tierCircle(mode, elo) {
-    const tier    = getTier(elo);
-    const cls     = tier.toLowerCase();
-    const iconFn  = ICONS[mode];
-    // icon colour matches tier colour
-    const tierHex = getComputedStyle(document.documentElement).getPropertyValue(`--${cls}`).trim() || '#8090a0';
-    const iconSvg = iconFn ? iconFn(16, tierHex) : '';
+    const tier   = getTier(elo);
+    const cls    = tier.toLowerCase();
+    const iconFn = ICONS[mode];
+    const iconSvg = iconFn ? iconFn(16) : '';
     return `
     <div class="tier-icon-wrap">
         <div class="tier-circle t-${cls}" title="${mode}: ${tier} (${elo})">${iconSvg}</div>
@@ -333,7 +367,6 @@ function tierCircle(mode, elo) {
     </div>`;
 }
 
-// ── Data ──────────────────────────────────────────────────────
 async function refresh() {
     try {
         const res  = await fetch('players.json?t=' + Date.now());
@@ -344,12 +377,10 @@ async function refresh() {
     } catch(e) { console.log("Waiting for data..."); }
 }
 
-// ── Tabs ──────────────────────────────────────────────────────
 function renderTabs() {
     document.getElementById('tabs').innerHTML = MODES.map(m => {
-        const iconFn = ICONS[m];
-        const color  = currentMode === m ? ICON_COLORS[m] : '#5a6070';
-        const iconSvg = iconFn ? iconFn(26, color) : '';
+        const iconFn  = ICONS[m];
+        const iconSvg = iconFn ? iconFn(26) : '';
         return `
         <div class="tab ${m===currentMode?'active':''}" onclick="setMode('${m}')">
             <div class="tab-icon-wrap">${iconSvg}</div>
@@ -365,7 +396,6 @@ function setMode(m) {
     render();
 }
 
-// ── Render dispatch ───────────────────────────────────────────
 function render() {
     const el     = document.getElementById('content');
     const search = document.getElementById('search').value.toLowerCase();
@@ -375,7 +405,6 @@ function render() {
     else                        renderGrid(el, list);
 }
 
-// ── Overall leaderboard ───────────────────────────────────────
 function renderOverall(el, list) {
     list.sort((a,b)=>totalPoints(b)-totalPoints(a));
     if(!list.length){
@@ -383,18 +412,17 @@ function renderOverall(el, list) {
         return;
     }
 
-    // Build tier colour map from CSS variables at runtime
-    const style = getComputedStyle(document.documentElement);
-    function tierHexFromVar(cls){ return style.getPropertyValue(`--${cls}`).trim(); }
-
     let html = `<div>
-        <div class="lb-head"><div>#</div><div>PLAYER</div><div>REGION</div><div>TIERS</div><div style="text-align:right;padding-right:20px">PTS</div></div>`;
+        <div class="lb-head">
+            <div>#</div><div>PLAYER</div><div>REGION</div><div>TIERS</div>
+            <div style="text-align:right;padding-right:20px">PTS</div>
+        </div>`;
 
     list.forEach((p,i)=>{
-        const ign    = p.ign||p.name;
-        const pts    = totalPoints(p);
-        const cr     = combatRank(pts);
-        const rankCls= i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
+        const ign     = p.ign||p.name;
+        const pts     = totalPoints(p);
+        const cr      = combatRank(pts);
+        const rankCls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
         const tierIcons = DISPLAY_MODES.map(m=>tierCircle(m, p.elo[m]??1000)).join('');
 
         html+=`
@@ -406,7 +434,7 @@ function renderOverall(el, list) {
                     <div class="player-name">${ign}</div>
                     <div class="player-rank-label">
                         <div class="rank-diamond" style="background:${RANK_COLORS[cr]||'#5a6070'}"></div>
-                        ${cr} (${pts} pts)
+                        ${cr} &nbsp;·&nbsp; ${pts} pts
                     </div>
                 </div>
             </div>
@@ -419,7 +447,6 @@ function renderOverall(el, list) {
     el.innerHTML = html + `</div>`;
 }
 
-// ── Per-mode tier grid ────────────────────────────────────────
 function renderGrid(el, list) {
     const cols={1:[],2:[],3:[],4:[],5:[]};
     list.forEach(p=>{
