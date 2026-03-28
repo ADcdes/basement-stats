@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 TOKEN             = os.getenv('DISCORD_TOKEN')
-MATCH_LOG_CHANNEL = os.getenv('MATCH_LOG_CHANNEL', 'match-log')  # channel name to auto-post results
+MATCH_LOG_CHANNEL = os.getenv('MATCH_LOG_CHANNEL', '🥊-match-reporting')  # channel name to auto-post results
 BOT_VERSION       = "2.0.0"
 
 # ── Config ─────────────────────────────────────────────────────
