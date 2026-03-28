@@ -15,214 +15,154 @@
             --text:        #e8eaf0;
             --muted:       #5a6070;
             --accent:      #5865f2;
-
+            --gold:        #e8a200;
+            --silver:      #8090a8;
+            --bronze:      #a06030;
             --ht1: #e84040; --lt1: #e86060;
             --ht2: #e87820; --lt2: #e89840;
             --ht3: #d4a800; --lt3: #d4bc40;
             --ht4: #3aaa50; --lt4: #60c070;
             --ht5: #4a70e8; --lt5: #7090e0;
-
-            --gold:   #e8a200;
-            --silver: #8090a8;
-            --bronze: #a06030;
         }
-
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            min-height: 100vh;
-        }
-
-        /* ══ NAVBAR ══════════════════════════════════════════════ */
+        /* ── NAVBAR ──────────────────────────────────────────── */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 40px; height: 64px;
-            background: var(--bg2);
-            border-bottom: 1px solid var(--border);
+            background: var(--bg2); border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.7rem; letter-spacing: 2px;
-            color: var(--text); cursor: pointer;
-            text-decoration: none;
-        }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; letter-spacing: 2px; color: var(--text); cursor: pointer; text-decoration: none; }
         .logo span { color: var(--gold); }
-
         .nav-right { display: flex; gap: 12px; align-items: center; }
-
         .search-wrap {
             display: flex; align-items: center; gap: 8px;
             background: var(--panel); border: 1px solid var(--border);
-            border-radius: 8px; padding: 0 14px; height: 38px;
-            transition: border-color 0.2s;
+            border-radius: 8px; padding: 0 14px; height: 38px; transition: border-color 0.2s;
         }
         .search-wrap:focus-within { border-color: rgba(255,255,255,0.2); }
         .search-wrap svg { color: var(--muted); flex-shrink: 0; }
-        .search-wrap input {
-            background: none; border: none; color: var(--text);
-            font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
-            width: 180px; outline: none;
-        }
+        .search-wrap input { background: none; border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; width: 180px; outline: none; }
         .search-wrap input::placeholder { color: var(--muted); }
-
         .discord-btn {
             display: flex; align-items: center; gap: 6px;
-            background: var(--accent); color: #fff;
-            text-decoration: none; padding: 0 16px; height: 38px;
-            border-radius: 8px; font-weight: 700; font-size: 0.85rem;
-            transition: filter 0.2s, transform 0.15s;
+            background: var(--accent); color: #fff; text-decoration: none;
+            padding: 0 16px; height: 38px; border-radius: 8px;
+            font-weight: 700; font-size: 0.85rem; transition: filter 0.2s, transform 0.15s;
         }
         .discord-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
 
-        /* ══ TABS ════════════════════════════════════════════════ */
+        /* ── TABS ────────────────────────────────────────────── */
         .tabs-row {
-            display: flex; gap: 4px; padding: 16px 40px 0;
+            display: flex; gap: 4px; padding: 12px 40px 0;
             overflow-x: auto; border-bottom: 1px solid var(--border);
         }
         .tabs-row::-webkit-scrollbar { display: none; }
-
         .tab {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 6px; padding: 10px 20px 14px;
-            cursor: pointer; color: var(--muted);
-            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            padding: 8px 18px 12px; cursor: pointer; color: var(--muted);
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
             white-space: nowrap; transition: color 0.2s;
-            border-bottom: 2px solid transparent;
-            margin-bottom: -1px; user-select: none;
+            border-bottom: 2px solid transparent; margin-bottom: -1px; user-select: none;
         }
-        .tab:hover { color: rgba(255,255,255,0.7); }
+        .tab:hover { color: rgba(255,255,255,0.6); }
         .tab.active { color: #fff; border-bottom-color: #fff; }
 
-        .tab-icon { font-size: 1.3rem; line-height: 1; }
+        /* Icon pill — dark rounded square like MCTiers */
+        .tab-icon-wrap {
+            width: 52px; height: 52px; border-radius: 12px;
+            background: #1a1e2b; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .tab:hover .tab-icon-wrap { background: #222638; border-color: rgba(255,255,255,0.12); }
+        .tab.active .tab-icon-wrap { background: #252a3d; border-color: rgba(255,255,255,0.18); }
 
-        /* ══ MAIN CONTENT ════════════════════════════════════════ */
+        /* ── CONTENT ─────────────────────────────────────────── */
         .content { padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; }
 
-        /* ══ LEADERBOARD TABLE ═══════════════════════════════════ */
-        .lb-table { width: 100%; margin-top: 8px; }
-
+        /* ── LEADERBOARD ─────────────────────────────────────── */
         .lb-head {
-            display: grid;
-            grid-template-columns: 110px 1fr 80px 1fr 120px;
-            padding: 10px 0 10px 0;
-            color: var(--muted); font-size: 0.7rem;
+            display: grid; grid-template-columns: 110px 1fr 80px 1fr 120px;
+            padding: 10px 0; color: var(--muted); font-size: 0.7rem;
             font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
             border-bottom: 1px solid var(--border);
         }
         .lb-head > * { padding: 0 8px; }
-        .col-tiers { text-align: right; }
-        .col-pts   { text-align: right; padding-right: 20px; }
 
         .lb-row {
-            display: grid;
-            grid-template-columns: 110px 1fr 80px 1fr 120px;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.15s;
-            cursor: pointer; position: relative;
-            min-height: 80px;
+            display: grid; grid-template-columns: 110px 1fr 80px 1fr 120px;
+            align-items: center; border-bottom: 1px solid var(--border);
+            transition: background 0.15s; cursor: pointer;
+            position: relative; min-height: 80px;
+            animation: fadeUp 0.3s both;
         }
         .lb-row:hover { background: var(--panel-hover); }
+        .lb-row:nth-child(1){animation-delay:.03s} .lb-row:nth-child(2){animation-delay:.06s}
+        .lb-row:nth-child(3){animation-delay:.09s} .lb-row:nth-child(4){animation-delay:.12s}
+        .lb-row:nth-child(5){animation-delay:.15s}
 
-        /* rank cell */
-        .rank-cell { display: flex; align-items: center; height: 100%; padding: 0 0 0 16px; }
+        .rank-cell { display: flex; align-items: center; height: 100%; padding-left: 16px; }
         .rank-badge {
             display: flex; align-items: center; justify-content: center;
             width: 68px; height: 52px;
             font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
-            clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
-            flex-shrink: 0;
+            clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); flex-shrink: 0;
         }
-        .rank-1 .rank-badge { background: linear-gradient(135deg, #e8a200, #c47800); color: #fff; }
-        .rank-2 .rank-badge { background: linear-gradient(135deg, #8090a8, #5a6878); color: #fff; }
-        .rank-3 .rank-badge { background: linear-gradient(135deg, #a06030, #704020); color: #fff; }
-        .rank-other .rank-badge { background: rgba(255,255,255,0.05); color: var(--muted); font-size: 1.5rem; }
+        .rank-1 .rank-badge { background: linear-gradient(135deg,#e8a200,#c47800); color:#fff; }
+        .rank-2 .rank-badge { background: linear-gradient(135deg,#8090a8,#5a6878); color:#fff; }
+        .rank-3 .rank-badge { background: linear-gradient(135deg,#a06030,#704020); color:#fff; }
+        .rank-other .rank-badge { background: rgba(255,255,255,0.05); color:var(--muted); font-size:1.5rem; }
 
-        /* player cell */
         .player-cell { display: flex; align-items: center; gap: 14px; padding: 12px 8px; }
         .player-avatar { width: 48px; height: 48px; border-radius: 6px; image-rendering: pixelated; flex-shrink: 0; }
         .player-name { font-size: 1.15rem; font-weight: 800; color: #fff; line-height: 1.2; }
-        .player-rank-label {
-            display: flex; align-items: center; gap: 5px;
-            font-size: 0.78rem; color: var(--muted); font-weight: 600;
-            margin-top: 3px;
-        }
-        .rank-diamond {
-            width: 10px; height: 10px; border-radius: 2px;
-            transform: rotate(45deg); flex-shrink: 0;
-        }
+        .player-rank-label { display: flex; align-items: center; gap: 5px; font-size: 0.78rem; color: var(--muted); font-weight: 600; margin-top: 3px; }
+        .rank-diamond { width: 10px; height: 10px; border-radius: 2px; transform: rotate(45deg); flex-shrink: 0; }
 
-        /* region cell */
         .region-cell { display: flex; align-items: center; padding: 0 8px; }
-        .region-badge {
-            padding: 4px 10px; border-radius: 5px; font-size: 0.75rem;
-            font-weight: 800; letter-spacing: 1px;
-        }
-        .region-NA { background: #c0392b; color: #fff; }
-        .region-EU { background: #27ae60; color: #fff; }
-        .region-AS { background: #2980b9; color: #fff; }
+        .region-badge { padding: 4px 10px; border-radius: 5px; font-size: 0.75rem; font-weight: 800; letter-spacing: 1px; }
+        .region-NA { background:#c0392b; color:#fff; }
+        .region-EU { background:#27ae60; color:#fff; }
 
-        /* tier icons cell */
-        .tiers-cell {
-            display: flex; align-items: center; gap: 8px;
-            flex-wrap: wrap; padding: 8px;
-        }
-
+        /* Tier icon circles in the row */
+        .tiers-cell { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px; }
         .tier-icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
         .tier-circle {
-            width: 42px; height: 42px; border-radius: 50%;
+            width: 40px; height: 40px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; line-height: 1;
-            background: var(--panel); border: 2px solid;
-            transition: transform 0.15s;
+            background: #1a1e2b; border: 2px solid; transition: transform 0.15s;
+            flex-shrink: 0;
         }
         .tier-circle:hover { transform: scale(1.15); }
-        .tier-label-small {
-            font-size: 0.6rem; font-weight: 900; letter-spacing: 0.5px;
-            text-align: center; line-height: 1;
-        }
+        .tier-lbl { font-size: 0.58rem; font-weight: 900; letter-spacing: 0.3px; text-align: center; }
 
-        /* Tier border + label colors */
-        .t-ht1 { border-color: var(--ht1); } .lbl-ht1 { color: var(--ht1); }
-        .t-lt1 { border-color: var(--lt1); } .lbl-lt1 { color: var(--lt1); }
-        .t-ht2 { border-color: var(--ht2); } .lbl-ht2 { color: var(--ht2); }
-        .t-lt2 { border-color: var(--lt2); } .lbl-lt2 { color: var(--lt2); }
-        .t-ht3 { border-color: var(--ht3); } .lbl-ht3 { color: var(--ht3); }
-        .t-lt3 { border-color: var(--lt3); } .lbl-lt3 { color: var(--lt3); }
-        .t-ht4 { border-color: var(--ht4); } .lbl-ht4 { color: var(--ht4); }
-        .t-lt4 { border-color: var(--lt4); } .lbl-lt4 { color: var(--lt4); }
-        .t-ht5 { border-color: var(--ht5); } .lbl-ht5 { color: var(--ht5); }
-        .t-lt5 { border-color: var(--lt5); } .lbl-lt5 { color: var(--lt5); }
+        /* tier border + label colours */
+        .t-ht1{border-color:var(--ht1)}.lbl-ht1{color:var(--ht1)}
+        .t-lt1{border-color:var(--lt1)}.lbl-lt1{color:var(--lt1)}
+        .t-ht2{border-color:var(--ht2)}.lbl-ht2{color:var(--ht2)}
+        .t-lt2{border-color:var(--lt2)}.lbl-lt2{color:var(--lt2)}
+        .t-ht3{border-color:var(--ht3)}.lbl-ht3{color:var(--ht3)}
+        .t-lt3{border-color:var(--lt3)}.lbl-lt3{color:var(--lt3)}
+        .t-ht4{border-color:var(--ht4)}.lbl-ht4{color:var(--ht4)}
+        .t-lt4{border-color:var(--lt4)}.lbl-lt4{color:var(--lt4)}
+        .t-ht5{border-color:var(--ht5)}.lbl-ht5{color:var(--ht5)}
+        .t-lt5{border-color:var(--lt5)}.lbl-lt5{color:var(--lt5)}
 
-        /* points cell */
-        .pts-cell {
-            text-align: right; padding-right: 20px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem; color: var(--muted);
-        }
+        .pts-cell { text-align: right; padding-right: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--muted); }
         .pts-cell span { color: var(--gold); }
 
-        /* ══ TIER GRID VIEW ═══════════════════════════════════════ */
-        .tier-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr);
-            gap: 12px; margin-top: 8px;
-        }
-        .tier-col {
-            background: var(--panel); border-radius: 10px; overflow: hidden;
-            border: 1px solid var(--border);
-        }
+        /* ── TIER GRID ───────────────────────────────────────── */
+        .tier-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; margin-top: 8px; }
+        .tier-col { background: var(--panel); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
         .tier-col-header {
-            padding: 12px 16px; font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.1rem; letter-spacing: 1px;
+            padding: 12px 16px; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid var(--border);
         }
-        .tier-col-sub { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.4); font-family: 'DM Sans', sans-serif; }
-
+        .tier-col-sub { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.35); font-family: 'DM Sans', sans-serif; }
         .tier-player-row {
             display: flex; align-items: center; justify-content: space-between;
             padding: 10px 14px; border-bottom: 1px solid var(--border);
@@ -232,119 +172,145 @@
         .tier-player-left { display: flex; align-items: center; gap: 8px; }
         .tier-small-avatar { width: 24px; height: 24px; border-radius: 4px; image-rendering: pixelated; }
         .tier-small-name { font-size: 0.82rem; font-weight: 700; }
-        .tier-elo-badge { font-size: 0.65rem; font-weight: 800; color: var(--muted); }
-
+        .tier-elo-num { font-size: 0.62rem; color: var(--muted); font-weight: 700; }
         .empty-tier { padding: 16px; text-align: center; color: var(--muted); font-size: 0.8rem; }
 
-        /* ══ EMPTY STATE ══════════════════════════════════════════ */
-        .empty-state {
-            padding: 80px 20px; text-align: center; color: var(--muted);
-            grid-column: 1 / -1;
-        }
+        .empty-state { padding: 80px 20px; text-align: center; color: var(--muted); }
         .empty-state p { font-size: 0.9rem; margin-top: 8px; }
 
-        /* ══ ANIMATIONS ══════════════════════════════════════════ */
         .fade-in { animation: fadeUp 0.35s cubic-bezier(0.2,0.8,0.2,1) both; }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-        .lb-row { animation: fadeUp 0.3s both; }
-        .lb-row:nth-child(1) { animation-delay: 0.03s; }
-        .lb-row:nth-child(2) { animation-delay: 0.06s; }
-        .lb-row:nth-child(3) { animation-delay: 0.09s; }
-        .lb-row:nth-child(4) { animation-delay: 0.12s; }
-        .lb-row:nth-child(5) { animation-delay: 0.15s; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
     </style>
 </head>
 <body>
 
-<!-- ══ NAVBAR ══════════════════════════════════════════════════ -->
+<!-- NAVBAR -->
 <nav class="navbar">
     <a class="logo" onclick="location.reload()">FRAKTU'S <span>BASEMENT</span></a>
     <div class="nav-right">
         <div class="search-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" id="search" placeholder="Search player...  /" onkeyup="render()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="search" placeholder="Search player..." onkeyup="render()">
         </div>
         <a href="https://discord.gg/5rnJVnswzj" target="_blank" class="discord-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
-            </svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
             Discord
         </a>
     </div>
 </nav>
 
-<!-- ══ TABS ════════════════════════════════════════════════════ -->
+<!-- TABS -->
 <div class="tabs-row" id="tabs"></div>
 
-<!-- ══ CONTENT ═════════════════════════════════════════════════ -->
+<!-- CONTENT -->
 <div class="content" id="content"></div>
 
 <script>
+// ── SVG Icons ──────────────────────────────────────────────────
+// Each returns an SVG string sized for the context (tab or circle)
+const ICONS = {
+    Overall: (s=26,c='#e8a200') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M8 21h8M12 17v4M5 3h14l-1.5 7A5.5 5.5 0 0 1 12 15a5.5 5.5 0 0 1-5.5-5L5 3z" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 3H3l1 5a3 3 0 0 0 2.5 2M19 3h2l-1 5a3 3 0 0 1-2.5 2" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+
+    LTMs: (s=26,c='#9aa0b0') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M14.5 4L20 9.5l-9 9-5-1-1-5 9-9z" stroke="${c}" stroke-width="1.7" stroke-linejoin="round"/>
+        <path d="M4 20l3.5-3.5M14.5 4l2-2 3.5 3.5-2 2" stroke="${c}" stroke-width="1.7" stroke-linecap="round"/>
+        <path d="M9.5 4L4 9.5l9 9 5-1 1-5-9-9z" stroke="${c}" stroke-width="1.7" stroke-linejoin="round" opacity=".5"/>
+        <path d="M20 20l-3.5-3.5" stroke="${c}" stroke-width="1.7" stroke-linecap="round" opacity=".5"/>
+    </svg>`,
+
+    Vanilla: (s=26,c='#a070e0') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2l3.5 5.5H20l-3.5 5.5L20 18.5h-4.5L12 22l-3.5-3.5H4l3.5-5.5L4 7.5h4.5L12 2z"
+              stroke="${c}" stroke-width="1.7" stroke-linejoin="round" fill="${c}" fill-opacity=".15"/>
+        <path d="M12 7l1.8 3h3l-2.4 2.4 1 3L12 13.5l-3.4 1.9 1-3L7.2 10h3L12 7z" fill="${c}" opacity=".7"/>
+    </svg>`,
+
+    UHC: (s=26,c='#e04060') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="${c}" fill-opacity=".9">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>`,
+
+    Pot: (s=26,c='#40b8d8') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M9 3h6l1 4H8L9 3z" stroke="${c}" stroke-width="1.7" stroke-linejoin="round" fill="${c}" fill-opacity=".2"/>
+        <path d="M7 7h10l1 9a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3l1-9z" stroke="${c}" stroke-width="1.7" stroke-linejoin="round" fill="${c}" fill-opacity=".15"/>
+        <path d="M10 11c0 1.5 4 1.5 4 3" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="16" cy="4" r="1.2" fill="${c}" opacity=".6"/>
+    </svg>`,
+
+    NethOP: (s=26,c='#9060c8') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="11" r="7" stroke="${c}" stroke-width="1.7" fill="${c}" fill-opacity=".12"/>
+        <circle cx="9.5" cy="10" r="1.5" fill="${c}"/>
+        <circle cx="14.5" cy="10" r="1.5" fill="${c}"/>
+        <path d="M9 14.5c.8 1.2 5.2 1.2 6 0" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M5 19l2-3M19 19l-2-3" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+
+    SMP: (s=26,c='#30c080') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="8" stroke="${c}" stroke-width="1.7" fill="${c}" fill-opacity=".1"/>
+        <path d="M12 4C9 4 6.5 7.6 6.5 12S9 20 12 20s5.5-3.6 5.5-8S15 4 12 4z" stroke="${c}" stroke-width="1.4" fill="none"/>
+        <path d="M4.5 9h15M4.5 15h15" stroke="${c}" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>`,
+
+    Sword: (s=26,c='#50b8e8') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M5 19l12-12M17 7l-2-2 2-2 2 2-2 2z" stroke="${c}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 19l-2 2M7 17l-2 2" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M15 9l-8 8" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".35"/>
+    </svg>`,
+
+    Axe: (s=26,c='#40a8d0') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M7 17L17 7" stroke="${c}" stroke-width="2" stroke-linecap="round"/>
+        <path d="M17 7c0 0-2-4-6-3s-4 6-4 6l4-1 1-4 3 3-1 4 4-1s3-2 2-5z"
+              stroke="${c}" stroke-width="1.7" stroke-linejoin="round" fill="${c}" fill-opacity=".2"/>
+        <path d="M7 17l-3 3" stroke="${c}" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>`,
+
+    Mace: (s=26,c='#8090a0') => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none">
+        <path d="M13 12L5 20" stroke="${c}" stroke-width="2.2" stroke-linecap="round"/>
+        <rect x="11" y="3" width="6" height="10" rx="2" stroke="${c}" stroke-width="1.7" fill="${c}" fill-opacity=".2" transform="rotate(45 14 8)"/>
+        <path d="M10 5l2-2M16 5l2-2M10 11l-2 2M16 11l2 2M13 3v-1M13 13v1" stroke="${c}" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+};
+
 // ── Constants ─────────────────────────────────────────────────
 const MODES = ["Overall","Vanilla","LTMs","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
-const MODE_ICONS = {
-    "Overall":"🏆","Vanilla":"⚔️","LTMs":"🎯","UHC":"❤️",
-    "Pot":"🧪","NethOP":"🟣","SMP":"🌍","Sword":"🗡️","Axe":"🪓","Mace":"🔨"
+const ICON_COLORS = {
+    Overall:'#e8a200', LTMs:'#9aa0b0', Vanilla:'#a070e0', UHC:'#e04060',
+    Pot:'#40b8d8', NethOP:'#9060c8', SMP:'#30c080', Sword:'#50b8e8',
+    Axe:'#40a8d0', Mace:'#8090a0'
 };
-// Points each tier is worth
-const TIER_PTS = {
-    HT1:50, LT1:45, HT2:40, LT2:35, HT3:30,
-    LT3:25, HT4:20, LT4:15, HT5:10, LT5:5
-};
-// Combat rank titles
-const COMBAT_RANKS = [
-    [380,"Combat Legend"],
-    [280,"Combat Master"],
-    [190,"Combat Ace"],
-    [120,"Combat Expert"],
-    [60, "Combat Warrior"],
-    [0,  "Combat Rookie"],
-];
-// Diamond colours for rank titles
-const RANK_COLORS = {
-    "Combat Legend": "#e84040",
-    "Combat Master": "#e87820",
-    "Combat Ace":    "#d4a800",
-    "Combat Expert": "#3aaa50",
-    "Combat Warrior":"#4a70e8",
-    "Combat Rookie": "#5a6070",
-};
+const TIER_PTS = { HT1:50,LT1:45,HT2:40,LT2:35,HT3:30,LT3:25,HT4:20,LT4:15,HT5:10,LT5:5 };
+const COMBAT_RANKS = [[380,"Combat Legend"],[280,"Combat Master"],[190,"Combat Ace"],[120,"Combat Expert"],[60,"Combat Warrior"],[0,"Combat Rookie"]];
+const RANK_COLORS  = {"Combat Legend":"#e84040","Combat Master":"#e87820","Combat Ace":"#d4a800","Combat Expert":"#3aaa50","Combat Warrior":"#4a70e8","Combat Rookie":"#5a6070"};
+
+// Mode → gamemode key (modes in GAMEMODES order for tier row display)
+const DISPLAY_MODES = ["LTMs","Vanilla","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
 
 let currentMode = "Overall";
 let players = {};
 
-// ── Tier helpers ──────────────────────────────────────────────
 function getTier(elo) {
-    if (elo >= 2400) return "HT1"; if (elo >= 2200) return "LT1";
-    if (elo >= 2000) return "HT2"; if (elo >= 1800) return "LT2";
-    if (elo >= 1600) return "HT3"; if (elo >= 1400) return "LT3";
-    if (elo >= 1300) return "HT4"; if (elo >= 1200) return "LT4";
-    if (elo >= 1100) return "HT5"; return "LT5";
+    if(elo>=2400)return"HT1";if(elo>=2200)return"LT1";
+    if(elo>=2000)return"HT2";if(elo>=1800)return"LT2";
+    if(elo>=1600)return"HT3";if(elo>=1400)return"LT3";
+    if(elo>=1300)return"HT4";if(elo>=1200)return"LT4";
+    if(elo>=1100)return"HT5";return"LT5";
 }
+function totalPoints(p) { return Object.values(p.elo).reduce((s,e)=>s+(TIER_PTS[getTier(e)]||0),0); }
+function combatRank(pts) { for(const[t,l]of COMBAT_RANKS)if(pts>=t)return l; return"Combat Rookie"; }
 
-function totalPoints(p) {
-    return Object.values(p.elo).reduce((s, e) => s + (TIER_PTS[getTier(e)] || 0), 0);
-}
-
-function combatRank(pts) {
-    for (const [threshold, label] of COMBAT_RANKS)
-        if (pts >= threshold) return label;
-    return "Combat Rookie";
-}
-
+// Build a tier circle for the leaderboard row
 function tierCircle(mode, elo) {
-    const tier = getTier(elo);
-    const icon = MODE_ICONS[mode] || "⚔️";
-    const cls  = tier.toLowerCase();
+    const tier    = getTier(elo);
+    const cls     = tier.toLowerCase();
+    const iconFn  = ICONS[mode];
+    // icon colour matches tier colour
+    const tierHex = getComputedStyle(document.documentElement).getPropertyValue(`--${cls}`).trim() || '#8090a0';
+    const iconSvg = iconFn ? iconFn(16, tierHex) : '';
     return `
     <div class="tier-icon-wrap">
-        <div class="tier-circle t-${cls}" title="${mode}: ${tier} (${elo})">${icon}</div>
-        <div class="tier-label-small lbl-${cls}">${tier}</div>
+        <div class="tier-circle t-${cls}" title="${mode}: ${tier} (${elo})">${iconSvg}</div>
+        <div class="tier-lbl lbl-${cls}">${tier}</div>
     </div>`;
 }
 
@@ -353,7 +319,7 @@ async function refresh() {
     try {
         const res  = await fetch('players.json?t=' + Date.now());
         const data = await res.json();
-        players = data.players;
+        players    = data.players;
         renderTabs();
         render();
     } catch(e) { console.log("Waiting for data..."); }
@@ -361,83 +327,71 @@ async function refresh() {
 
 // ── Tabs ──────────────────────────────────────────────────────
 function renderTabs() {
-    document.getElementById('tabs').innerHTML = MODES.map(m => `
-        <div class="tab ${m === currentMode ? 'active' : ''}" onclick="setMode('${m}')">
-            <span class="tab-icon">${MODE_ICONS[m]}</span>
+    document.getElementById('tabs').innerHTML = MODES.map(m => {
+        const iconFn = ICONS[m];
+        const color  = currentMode === m ? ICON_COLORS[m] : '#5a6070';
+        const iconSvg = iconFn ? iconFn(26, color) : '';
+        return `
+        <div class="tab ${m===currentMode?'active':''}" onclick="setMode('${m}')">
+            <div class="tab-icon-wrap">${iconSvg}</div>
             ${m}
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
 }
 
 function setMode(m) {
-    if (currentMode === m) return;
+    if(currentMode===m) return;
     currentMode = m;
     renderTabs();
     render();
 }
 
-// ── Render ────────────────────────────────────────────────────
+// ── Render dispatch ───────────────────────────────────────────
 function render() {
     const el     = document.getElementById('content');
     const search = document.getElementById('search').value.toLowerCase();
-    const list   = Object.values(players).filter(p =>
-        (p.ign || p.name).toLowerCase().includes(search)
-    );
-
+    const list   = Object.values(players).filter(p=>(p.ign||p.name).toLowerCase().includes(search));
     el.innerHTML = '';
-
-    if (currentMode === 'Overall') renderOverall(el, list);
-    else                           renderGrid(el, list);
+    if(currentMode==='Overall') renderOverall(el, list);
+    else                        renderGrid(el, list);
 }
 
 // ── Overall leaderboard ───────────────────────────────────────
 function renderOverall(el, list) {
-    list.sort((a,b) => totalPoints(b) - totalPoints(a));
-
-    if (!list.length) {
-        el.innerHTML = `<div class="empty-state"><h3>No players yet</h3><p>Verify some players to get started!</p></div>`;
+    list.sort((a,b)=>totalPoints(b)-totalPoints(a));
+    if(!list.length){
+        el.innerHTML=`<div class="empty-state"><h3>No players yet</h3><p>Verify some players to get started!</p></div>`;
         return;
     }
 
-    const gameModes = ["LTMs","Vanilla","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
+    // Build tier colour map from CSS variables at runtime
+    const style = getComputedStyle(document.documentElement);
+    function tierHexFromVar(cls){ return style.getPropertyValue(`--${cls}`).trim(); }
 
-    let html = `
-    <div class="lb-table">
-        <div class="lb-head">
-            <div>#</div>
-            <div>PLAYER</div>
-            <div>REGION</div>
-            <div>TIERS</div>
-            <div class="col-pts">PTS</div>
-        </div>`;
+    let html = `<div>
+        <div class="lb-head"><div>#</div><div>PLAYER</div><div>REGION</div><div>TIERS</div><div style="text-align:right;padding-right:20px">PTS</div></div>`;
 
-    list.forEach((p, i) => {
-        const ign      = p.ign || p.name;
-        const pts      = totalPoints(p);
-        const cr       = combatRank(pts);
-        const crColor  = RANK_COLORS[cr] || '#5a6070';
-        const rankCls  = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-other';
+    list.forEach((p,i)=>{
+        const ign    = p.ign||p.name;
+        const pts    = totalPoints(p);
+        const cr     = combatRank(pts);
+        const rankCls= i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
+        const tierIcons = DISPLAY_MODES.map(m=>tierCircle(m, p.elo[m]??1000)).join('');
 
-        const tierIcons = gameModes.map(m => tierCircle(m, p.elo[m] ?? 1000)).join('');
-
-        html += `
+        html+=`
         <div class="lb-row ${rankCls}">
-            <div class="rank-cell">
-                <div class="rank-badge">${i+1}</div>
-            </div>
+            <div class="rank-cell"><div class="rank-badge">${i+1}</div></div>
             <div class="player-cell">
-                <img class="player-avatar" src="https://mc-heads.net/avatar/${ign}/48" loading="lazy" alt="${ign}">
+                <img class="player-avatar" src="https://mc-heads.net/avatar/${ign}/48" loading="lazy">
                 <div>
                     <div class="player-name">${ign}</div>
                     <div class="player-rank-label">
-                        <div class="rank-diamond" style="background:${crColor}"></div>
+                        <div class="rank-diamond" style="background:${RANK_COLORS[cr]||'#5a6070'}"></div>
                         ${cr} (${pts} pts)
                     </div>
                 </div>
             </div>
-            <div class="region-cell">
-                <span class="region-badge region-NA">NA</span>
-            </div>
+            <div class="region-cell"><span class="region-badge region-NA">NA</span></div>
             <div class="tiers-cell">${tierIcons}</div>
             <div class="pts-cell"><span>${pts}</span></div>
         </div>`;
@@ -448,58 +402,50 @@ function renderOverall(el, list) {
 
 // ── Per-mode tier grid ────────────────────────────────────────
 function renderGrid(el, list) {
-    const cols = {1:[],2:[],3:[],4:[],5:[]};
-
-    list.forEach(p => {
-        const elo = p.elo[currentMode];
-        if (elo === undefined) return;
-        const tier = getTier(elo);
-        const num  = parseInt(tier.replace(/\D/g,''));
-        if (cols[num]) cols[num].push({...p, _elo: elo, _tier: tier});
+    const cols={1:[],2:[],3:[],4:[],5:[]};
+    list.forEach(p=>{
+        const elo=p.elo[currentMode];
+        if(elo===undefined)return;
+        const tier=getTier(elo);
+        const num=parseInt(tier.replace(/\D/g,''));
+        if(cols[num])cols[num].push({...p,_elo:elo,_tier:tier});
     });
 
-    const total = Object.values(cols).reduce((s,c) => s + c.length, 0);
-    if (!total) {
-        el.innerHTML = `<div class="empty-state"><h3>No players in ${currentMode} yet</h3><p>Report some matches to populate this leaderboard!</p></div>`;
+    const total=Object.values(cols).reduce((s,c)=>s+c.length,0);
+    if(!total){
+        el.innerHTML=`<div class="empty-state"><h3>No players in ${currentMode} yet</h3><p>Report some matches to populate this!</p></div>`;
         return;
     }
 
-    const TIER_HEAD_COLORS = ['#e84040','#e87820','#d4a800','#3aaa50','#4a70e8'];
-
-    let html = `<div class="tier-grid">`;
-    for (let i = 1; i <= 5; i++) {
-        const col    = cols[i].sort((a,b) => b._elo - a._elo);
-        const ht     = `HT${i}`, lt = `LT${i}`;
-        const hColor = TIER_HEAD_COLORS[i-1];
-
-        const rows = col.map(p => {
-            const ign = p.ign || p.name;
-            return `
-            <div class="tier-player-row">
+    const HEAD_COLORS=['#e84040','#e87820','#d4a800','#3aaa50','#4a70e8'];
+    let html=`<div class="tier-grid">`;
+    for(let i=1;i<=5;i++){
+        const col=cols[i].sort((a,b)=>b._elo-a._elo);
+        const rows=col.map(p=>{
+            const ign=p.ign||p.name;
+            return`<div class="tier-player-row">
                 <div class="tier-player-left">
                     <img class="tier-small-avatar" src="https://mc-heads.net/avatar/${ign}/24" loading="lazy">
                     <span class="tier-small-name">${ign}</span>
                 </div>
                 <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-                    <span class="tier-label-small lbl-${p._tier.toLowerCase()}">${p._tier}</span>
-                    <span class="tier-elo-badge">${p._elo}</span>
+                    <span class="tier-lbl lbl-${p._tier.toLowerCase()}">${p._tier}</span>
+                    <span class="tier-elo-num">${p._elo}</span>
                 </div>
             </div>`;
-        }).join('') || `<div class="empty-tier">Empty</div>`;
+        }).join('')||`<div class="empty-tier">Empty</div>`;
 
-        html += `
-        <div class="tier-col fade-in" style="animation-delay:${(i-1)*0.06}s">
-            <div class="tier-col-header" style="border-left: 3px solid ${hColor}">
+        html+=`<div class="tier-col fade-in" style="animation-delay:${(i-1)*0.06}s">
+            <div class="tier-col-header" style="border-left:3px solid ${HEAD_COLORS[i-1]}">
                 <span>TIER ${i}</span>
-                <span class="tier-col-sub">${col.length} PLAYER${col.length !== 1 ? 'S' : ''}</span>
+                <span class="tier-col-sub">${col.length} PLAYER${col.length!==1?'S':''}</span>
             </div>
             ${rows}
         </div>`;
     }
-    el.innerHTML = html + `</div>`;
+    el.innerHTML=html+`</div>`;
 }
 
-// ── Init ──────────────────────────────────────────────────────
 refresh();
 setInterval(refresh, 30000);
 </script>
