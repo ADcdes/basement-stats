@@ -4,496 +4,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fraktu's Basement | Rankings</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg:          #080a10;
-            --bg2:         #0d0f18;
-            --panel:       #11141d;
-            --panel-hover: #171b27;
-            --border:      rgba(255,255,255,0.06);
-            --border-mid:  rgba(255,255,255,0.1);
-            --text:        #e8eaf0;
-            --muted:       #4a5268;
-            --accent:      #5865f2;
-            --gold:        #e8a200;
-            --silver:      #8090a8;
-            --bronze:      #a06030;
-            --ht1: #e84040; --lt1: #e86060;
-            --ht2: #e87820; --lt2: #e89840;
-            --ht3: #d4a800; --lt3: #d4bc40;
-            --ht4: #3aaa50; --lt4: #60c070;
-            --ht5: #4a70e8; --lt5: #7090e0;
+            --bg:       #06080d;
+            --bg2:      #0a0d15;
+            --surface:  #0f1320;
+            --surface2: #141828;
+            --border:   rgba(255,255,255,0.06);
+            --border2:  rgba(255,255,255,0.11);
+            --text:     #dce4f0;
+            --muted:    #3d4a60;
+            --muted2:   #5a6880;
+            --teal:     #10d4b0;
+            --teal-dim: rgba(16,212,176,0.12);
+            --gold:     #f0a500;
+            --silver:   #8899b0;
+            --bronze:   #b8733a;
+            --ht1:#e84040;--lt1:#e86060;
+            --ht2:#e87820;--lt2:#e89840;
+            --ht3:#d4a800;--lt3:#d4bc40;
+            --ht4:#3aaa50;--lt4:#60c070;
+            --ht5:#4a70e8;--lt5:#7090e0;
         }
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background: var(--bg); color: var(--text);
-            font-family: 'DM Sans', sans-serif; min-height: 100vh;
-            background-image: radial-gradient(ellipse 80% 40% at 50% -10%, rgba(88,101,242,0.07) 0%, transparent 70%);
+            font-family: 'Space Grotesk', sans-serif; min-height: 100vh;
+            background-image:
+                radial-gradient(ellipse 60% 30% at 50% 0%, rgba(16,212,176,0.05) 0%, transparent 60%),
+                radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px;
         }
 
-        /* ── NAVBAR ──────────────────────────────────────────── */
+        /* ── NAVBAR ─────────────────────────────────────────── */
         .navbar {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 40px; height: 64px;
-            background: rgba(13,15,24,0.85);
-            backdrop-filter: blur(12px);
+            padding: 0 40px; height: 60px;
+            background: rgba(10,13,21,0.92);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             position: sticky; top: 0; z-index: 100;
         }
-        .logo {
-            font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem;
-            letter-spacing: 2px; color: var(--text); cursor: pointer; text-decoration: none;
-        }
-        .logo span { color: var(--gold); }
-        .nav-right { display: flex; gap: 12px; align-items: center; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 3px; color: var(--text); text-decoration: none; cursor: pointer; }
+        .logo .accent { color: var(--teal); }
+        .logo .dim { color: var(--muted2); }
+        .nav-right { display: flex; gap: 10px; align-items: center; }
         .search-wrap {
             display: flex; align-items: center; gap: 8px;
             background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-            border-radius: 8px; padding: 0 14px; height: 38px; transition: border-color 0.2s, background 0.2s;
+            border-radius: 6px; padding: 0 12px; height: 36px; transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .search-wrap:focus-within { border-color: var(--border-mid); background: rgba(255,255,255,0.06); }
-        .search-wrap svg { color: var(--muted); flex-shrink: 0; }
-        .search-wrap input { background: none; border: none; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; width: 180px; outline: none; }
+        .search-wrap:focus-within { border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal-dim); }
+        .search-wrap svg { color: var(--muted2); flex-shrink: 0; }
+        .search-wrap input { background: none; border: none; color: var(--text); font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; width: 170px; outline: none; }
         .search-wrap input::placeholder { color: var(--muted); }
         .discord-btn {
             display: flex; align-items: center; gap: 6px;
-            background: var(--accent); color: #fff; text-decoration: none;
-            padding: 0 16px; height: 38px; border-radius: 8px;
-            font-weight: 700; font-size: 0.85rem; transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
-            box-shadow: 0 2px 12px rgba(88,101,242,0.3);
+            background: rgba(88,101,242,0.18); border: 1px solid rgba(88,101,242,0.35);
+            color: #9aa8ff; text-decoration: none;
+            padding: 0 14px; height: 36px; border-radius: 6px;
+            font-weight: 700; font-size: 0.8rem; letter-spacing: 0.3px;
+            transition: background 0.2s, border-color 0.2s, color 0.2s;
         }
-        .discord-btn:hover { filter: brightness(1.15); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(88,101,242,0.45); }
+        .discord-btn:hover { background: rgba(88,101,242,0.28); border-color: rgba(88,101,242,0.6); color: #c0c8ff; }
 
-        /* ── TABS ────────────────────────────────────────────── */
-        .tabs-row {
-            display: flex; gap: 4px; padding: 12px 40px 0;
-            overflow-x: auto; border-bottom: 1px solid var(--border);
-            background: var(--bg2);
-        }
-        .tabs-row::-webkit-scrollbar { display: none; }
+        /* ── MODE TABS ──────────────────────────────────────── */
+        .tabs-bar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 40px; }
+        .tabs-inner { display: flex; gap: 2px; overflow-x: auto; }
+        .tabs-inner::-webkit-scrollbar { display: none; }
         .tab {
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            padding: 8px 18px 12px; cursor: pointer; color: var(--muted);
-            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
-            white-space: nowrap; transition: color 0.2s;
-            border-bottom: 2px solid transparent; margin-bottom: -1px; user-select: none;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+            padding: 14px 20px 10px; cursor: pointer; user-select: none;
+            border-bottom: 2px solid transparent; margin-bottom: -1px;
+            transition: border-color 0.2s, opacity 0.2s; white-space: nowrap;
+            opacity: 0.4; position: relative;
         }
-        .tab:hover { color: rgba(255,255,255,0.6); }
-        .tab.active { color: #fff; border-bottom-color: #fff; }
-
-        .tab-icon-wrap {
-            width: 52px; height: 52px; border-radius: 14px;
-            background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        .tab:hover { opacity: 0.75; }
+        .tab.active { opacity: 1; border-bottom-color: var(--teal); }
+        .tab.active::after {
+            content: ''; position: absolute; bottom: -1px; left: 20%; right: 20%;
+            height: 2px; background: var(--teal); filter: blur(4px); border-radius: 2px;
         }
-        .tab:hover .tab-icon-wrap { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); transform: translateY(-1px); }
-        .tab.active .tab-icon-wrap { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.16); }
+        .tab-icon { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+        .tab-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text); }
 
-        /* ── CONTENT ─────────────────────────────────────────── */
-        .content { padding: 0 40px 60px; max-width: 1400px; margin: 0 auto; }
+        /* ── LAYOUT ─────────────────────────────────────────── */
+        .page { max-width: 1380px; margin: 0 auto; padding: 24px 40px 80px; }
 
-        /* ── LEADERBOARD ─────────────────────────────────────── */
-        .lb-head {
-            display: grid; grid-template-columns: 110px 1fr 80px 1fr 120px;
-            padding: 12px 0; color: var(--muted); font-size: 0.65rem;
-            font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase;
+        /* ── MODE HEADER ────────────────────────────────────── */
+        .mode-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 16px; padding-bottom: 16px;
             border-bottom: 1px solid var(--border);
         }
-        .lb-head > * { padding: 0 8px; }
+        .mode-icon-lg {
+            width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+            background: var(--surface); border: 1px solid var(--border2); border-radius: 10px;
+        }
+        .mode-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; }
+        .mode-sub { font-size: 0.72rem; font-weight: 600; color: var(--muted2); letter-spacing: 0.5px; margin-top: 1px; }
+        .mode-count {
+            margin-left: auto; font-size: 0.7rem; font-weight: 700; color: var(--muted);
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 20px; letter-spacing: 0.5px;
+        }
 
+        /* ── LEADERBOARD TABLE ──────────────────────────────── */
+        .lb-table { width: 100%; border-collapse: collapse; }
+        .lb-table thead th {
+            text-align: left; padding: 8px 12px;
+            font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .lb-table thead th.right { text-align: right; }
         .lb-row {
-            display: grid; grid-template-columns: 110px 1fr 80px 1fr 120px;
-            align-items: center; border-bottom: 1px solid var(--border);
-            transition: background 0.15s; cursor: pointer;
-            position: relative; min-height: 80px;
-            animation: fadeUp 0.35s both;
-        }
-        .lb-row:hover { background: var(--panel-hover); }
-        .lb-row:nth-child(1){animation-delay:.04s} .lb-row:nth-child(2){animation-delay:.08s}
-        .lb-row:nth-child(3){animation-delay:.12s} .lb-row:nth-child(4){animation-delay:.16s}
-        .lb-row:nth-child(5){animation-delay:.20s}
-
-        /* Gold/silver/bronze left accent stripe */
-        .rank-1::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#e8a200,#c47800); border-radius:0 2px 2px 0; }
-        .rank-2::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#8090a8,#5a6878); border-radius:0 2px 2px 0; }
-        .rank-3::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background: linear-gradient(180deg,#c0783a,#704020); border-radius:0 2px 2px 0; }
-
-        .rank-cell { display: flex; align-items: center; height: 100%; padding-left: 16px; }
-        .rank-badge {
-            display: flex; align-items: center; justify-content: center;
-            width: 68px; height: 52px;
-            font-family: 'Bebas Neue', sans-serif; font-size: 2rem;
-            clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); flex-shrink: 0;
-        }
-        .rank-1 .rank-badge { background: linear-gradient(135deg,#f0b000,#c47800); color:#fff; }
-        .rank-2 .rank-badge { background: linear-gradient(135deg,#8090a8,#5a6878); color:#fff; }
-        .rank-3 .rank-badge { background: linear-gradient(135deg,#c0783a,#704020); color:#fff; }
-        .rank-other .rank-badge { background: rgba(255,255,255,0.04); color:var(--muted); font-size:1.5rem; }
-
-        .player-cell { display: flex; align-items: center; gap: 14px; padding: 12px 8px; }
-        .player-avatar { width: 48px; height: 48px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        .player-name { font-size: 1.1rem; font-weight: 800; color: #fff; line-height: 1.2; }
-        .player-rank-label { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-top: 3px; }
-        .rank-diamond { width: 8px; height: 8px; border-radius: 1px; transform: rotate(45deg); flex-shrink: 0; }
-
-        .region-cell { display: flex; align-items: center; padding: 0 8px; }
-        .region-badge { padding: 3px 9px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; letter-spacing: 1px; }
-        .region-NA { background: rgba(192,57,43,0.25); color:#e05040; border: 1px solid rgba(192,57,43,0.3); }
-        .region-EU { background: rgba(39,174,96,0.2); color:#3cca78; border: 1px solid rgba(39,174,96,0.25); }
-
-        /* Tier icon circles in the row */
-        .tiers-cell { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px; }
-        .tier-icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .tier-circle {
-            width: 38px; height: 38px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.04); border: 2px solid;
-            transition: transform 0.15s, box-shadow 0.15s;
-            flex-shrink: 0;
-        }
-        .tier-circle:hover { transform: scale(1.18); }
-        .tier-lbl { font-size: 0.55rem; font-weight: 900; letter-spacing: 0.3px; text-align: center; opacity: 0.85; }
-
-        /* tier border + label colours */
-        .t-ht1{border-color:var(--ht1)}.lbl-ht1{color:var(--ht1)}
-        .t-lt1{border-color:var(--lt1)}.lbl-lt1{color:var(--lt1)}
-        .t-ht2{border-color:var(--ht2)}.lbl-ht2{color:var(--ht2)}
-        .t-lt2{border-color:var(--lt2)}.lbl-lt2{color:var(--lt2)}
-        .t-ht3{border-color:var(--ht3)}.lbl-ht3{color:var(--ht3)}
-        .t-lt3{border-color:var(--lt3)}.lbl-lt3{color:var(--lt3)}
-        .t-ht4{border-color:var(--ht4)}.lbl-ht4{color:var(--ht4)}
-        .t-lt4{border-color:var(--lt4)}.lbl-lt4{color:var(--lt4)}
-        .t-ht5{border-color:var(--ht5)}.lbl-ht5{color:var(--ht5)}
-        .t-lt5{border-color:var(--lt5)}.lbl-lt5{color:var(--lt5)}
-
-        /* glow tints on active tiers */
-        .t-ht1:hover{box-shadow:0 0 8px rgba(232,64,64,0.35)}
-        .t-lt1:hover{box-shadow:0 0 8px rgba(232,96,96,0.35)}
-        .t-ht2:hover{box-shadow:0 0 8px rgba(232,120,32,0.35)}
-        .t-lt2:hover{box-shadow:0 0 8px rgba(232,152,64,0.35)}
-        .t-ht3:hover{box-shadow:0 0 8px rgba(212,168,0,0.35)}
-        .t-lt3:hover{box-shadow:0 0 8px rgba(212,188,64,0.35)}
-        .t-ht4:hover{box-shadow:0 0 8px rgba(58,170,80,0.35)}
-        .t-lt4:hover{box-shadow:0 0 8px rgba(96,192,112,0.35)}
-        .t-ht5:hover{box-shadow:0 0 8px rgba(74,112,232,0.35)}
-        .t-lt5:hover{box-shadow:0 0 8px rgba(112,144,224,0.35)}
-
-        .pts-cell { text-align: right; padding-right: 20px; font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--muted); }
-        .pts-cell span { color: var(--gold); }
-
-        /* ── TIER GRID ───────────────────────────────────────── */
-        .tier-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-top: 10px; }
-        .tier-col {
-            background: var(--panel); border-radius: 12px; overflow: hidden;
-            border: 1px solid var(--border);
-            transition: border-color 0.2s;
-        }
-        .tier-col:hover { border-color: rgba(255,255,255,0.1); }
-        .tier-col-header {
-            padding: 12px 16px; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: 1px;
-            display: flex; align-items: center; justify-content: space-between;
             border-bottom: 1px solid var(--border);
-            background: rgba(255,255,255,0.02);
+            transition: background 0.12s; cursor: pointer;
+            animation: rowIn 0.3s both;
         }
-        .tier-col-sub { font-size: 0.62rem; font-weight: 800; color: rgba(255,255,255,0.3); font-family: 'DM Sans', sans-serif; letter-spacing: 0.5px; }
-        .tier-player-row {
+        .lb-row:hover { background: var(--surface); }
+        .lb-row td { padding: 0; vertical-align: middle; }
+        @keyframes rowIn { from{opacity:0;transform:translateX(-6px)} to{opacity:1;transform:translateX(0)} }
+
+        .td-rank { width: 80px; padding: 20px 0 20px 20px; }
+        .rank-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; line-height: 1; color: var(--muted); }
+        .rank-num.r1 { color: var(--gold); text-shadow: 0 0 16px rgba(240,165,0,0.4); }
+        .rank-num.r2 { color: var(--silver); }
+        .rank-num.r3 { color: var(--bronze); }
+
+        .td-player { padding: 14px 12px; }
+        .player-inner { display: flex; align-items: center; gap: 12px; }
+        .player-skin {
+            width: 44px; height: 44px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5); border: 1px solid var(--border2);
+        }
+        .player-name { font-size: 1.05rem; font-weight: 700; color: var(--text); letter-spacing: -0.2px; }
+        .player-best { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--muted2); font-weight: 600; margin-top: 2px; }
+        .best-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+        .td-region { width: 70px; padding: 0 8px; }
+        .region-pill { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 4px; font-size: 0.68rem; font-weight: 800; letter-spacing: 1px; }
+        .region-NA { background: rgba(200,60,50,0.18); color: #e07060; border: 1px solid rgba(200,60,50,0.25); }
+        .region-EU { background: rgba(40,180,100,0.16); color: #50d890; border: 1px solid rgba(40,180,100,0.22); }
+
+        .td-tiers { padding: 0 8px; }
+        .tier-circles { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+        .tier-wrap { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+        .tier-circle {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 2px solid; background: rgba(255,255,255,0.03);
+            transition: transform 0.15s, filter 0.15s; cursor: default;
+        }
+        .tier-circle:hover { transform: scale(1.15); filter: brightness(1.3); }
+        .tier-tag { font-size: 0.5rem; font-weight: 800; letter-spacing: 0.2px; text-align: center; }
+
+        .t-ht1{border-color:var(--ht1)}.tag-ht1{color:var(--ht1)}
+        .t-lt1{border-color:var(--lt1)}.tag-lt1{color:var(--lt1)}
+        .t-ht2{border-color:var(--ht2)}.tag-ht2{color:var(--ht2)}
+        .t-lt2{border-color:var(--lt2)}.tag-lt2{color:var(--lt2)}
+        .t-ht3{border-color:var(--ht3)}.tag-ht3{color:var(--ht3)}
+        .t-lt3{border-color:var(--lt3)}.tag-lt3{color:var(--lt3)}
+        .t-ht4{border-color:var(--ht4)}.tag-ht4{color:var(--ht4)}
+        .t-lt4{border-color:var(--lt4)}.tag-lt4{color:var(--lt4)}
+        .t-ht5{border-color:var(--ht5)}.tag-ht5{color:var(--ht5)}
+        .t-lt5{border-color:var(--lt5)}.tag-lt5{color:var(--lt5)}
+
+        .td-elo { width: 120px; text-align: right; padding-right: 24px; }
+        .elo-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; color: var(--teal); letter-spacing: 1px; }
+        .elo-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-align: right; }
+
+        /* ── TIER GRID ──────────────────────────────────────── */
+        .tier-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 4px; }
+        .tier-col { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+        .tier-col:hover { border-color: var(--border2); }
+        .tier-col-head {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 9px 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: background 0.15s; cursor: pointer;
+            padding: 10px 14px; border-bottom: 1px solid var(--border); border-top: 3px solid;
         }
-        .tier-player-row:last-child { border-bottom: none; }
-        .tier-player-row:hover { background: var(--panel-hover); }
+        .tier-col-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 1px; }
+        .tier-col-count { font-size: 0.6rem; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; }
+        .tier-player {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: background 0.12s; cursor: pointer;
+        }
+        .tier-player:last-child { border-bottom: none; }
+        .tier-player:hover { background: var(--surface2); }
         .tier-player-left { display: flex; align-items: center; gap: 8px; }
-        .tier-small-avatar { width: 24px; height: 24px; border-radius: 5px; image-rendering: pixelated; }
-        .tier-small-name { font-size: 0.82rem; font-weight: 700; }
-        .tier-elo-num { font-size: 0.6rem; color: var(--muted); font-weight: 700; font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.5px; }
-        .empty-tier { padding: 20px; text-align: center; color: var(--muted); font-size: 0.78rem; }
+        .tier-avatar { width: 22px; height: 22px; border-radius: 4px; image-rendering: pixelated; }
+        .tier-player-name { font-size: 0.8rem; font-weight: 700; }
+        .tier-player-right { text-align: right; }
+        .tier-player-tier { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.3px; }
+        .tier-player-elo { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; color: var(--muted2); letter-spacing: 0.5px; }
+        .empty-col { padding: 18px; text-align: center; color: var(--muted); font-size: 0.75rem; }
 
+        /* ── EMPTY ──────────────────────────────────────────── */
         .empty-state { padding: 80px 20px; text-align: center; color: var(--muted); }
-        .empty-state h3 { font-size: 1.1rem; font-weight: 800; }
-        .empty-state p { font-size: 0.9rem; margin-top: 8px; }
+        .empty-state h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+        .empty-state p { font-size: 0.85rem; }
 
-        /* ── SECTION HEADER ──────────────────────────────────── */
-        .section-header {
-            display: flex; align-items: center; gap: 10px;
-            padding: 20px 0 12px; border-bottom: 1px solid var(--border); margin-bottom: 0;
-        }
-        .section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 1.5px; color: rgba(255,255,255,0.5); }
-        .section-header .player-count { font-size: 0.7rem; font-weight: 800; color: var(--muted); background: rgba(255,255,255,0.05); padding: 3px 8px; border-radius: 20px; letter-spacing: 0.5px; }
-
-        .fade-in { animation: fadeUp 0.35s cubic-bezier(0.2,0.8,0.2,1) both; }
+        .teal-line { height: 2px; background: linear-gradient(90deg, transparent, var(--teal), transparent); opacity: 0.6; }
         @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        .fade-in { animation: fadeUp 0.3s both; }
     </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<div class="teal-line"></div>
+
 <nav class="navbar">
-    <a class="logo" onclick="location.reload()">FRAKTU'S <span>BASEMENT</span></a>
+    <a class="logo" onclick="location.reload()">FRAKTU<span class="dim">'S</span> <span class="accent">BASEMENT</span></a>
     <div class="nav-right">
         <div class="search-wrap">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             <input type="text" id="search" placeholder="Search player..." onkeyup="render()">
         </div>
         <a href="https://discord.gg/5rnJVnswzj" target="_blank" class="discord-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.03.056a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
             Discord
         </a>
     </div>
 </nav>
 
-<!-- TABS -->
-<div class="tabs-row" id="tabs"></div>
-
-<!-- CONTENT -->
-<div class="content" id="content"></div>
+<div class="tabs-bar"><div class="tabs-inner" id="tabs"></div></div>
+<div class="page" id="content"></div>
 
 <script>
-// ── Real MCTiers SVG Icons ─────────────────────────────────────
 const ICONS = {
-    Overall: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ffaf00" d="M859.15 273.15v63.71c0 178.72-143.67 421.78-322.07 425.6-1.59.32-2.87.32-4.46.32-180.31 0-326.53-245.61-326.53-425.92v-132c0-90.15 73.27-95.14 163.42-95.14h326.21c90.16.01 163.43 73.28 163.43 163.43"/>
-        <path fill="#ffaf00" d="M621.19 376.68v445.67c0 47.47-37.27 86.01-84.1 88.56h-4.46c-49.06 0-88.56-39.5-88.56-88.56V376.68c0-49.06 39.5-88.88 88.56-88.88 49.05 0 88.56 39.82 88.56 88.88"/>
-        <path fill="#ffaf00" d="M735.55 929.39c0 26.76-21.66 48.74-48.42 48.74H378.12c-26.76 0-48.42-21.98-48.42-48.74 0-29.31 12.11-56.07 31.22-75.5 19.43-19.43 46.19-31.54 75.82-31.54h191.78c59.25 0 107.03 48.1 107.03 107.04"/>
-        <path fill="none" stroke="#ffa100" stroke-width="96.3669" stroke-linecap="round" stroke-miterlimit="10" d="M818.15 230.53s176.32-42.77 176.32 95.25c0 61.35-76.97 427.02-302.58 345.67"/>
-        <path fill="none" stroke="#ffaf00" stroke-width="96.3669" stroke-linecap="round" stroke-miterlimit="10" d="M255.71 230.53S79.39 187.76 79.39 325.78c0 61.35 76.97 427.02 302.58 345.67"/>
-        <path fill="#ffa100" d="M621.19 742.71v79.64h7.33c59.25 0 107.04 48.1 107.04 107.04 0 26.76-21.66 48.74-48.42 48.74H537.09v-868.4h158.64c90.15 0 163.42 4.98 163.42 95.14v132c0 149.4-100.66 344.04-237.96 405.84"/>
-    </svg>`,
-
-    LTMs: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#ccc" d="m212.9 197.4 74.7 170.3c2.9 6.7 7.1 12.8 12.3 18L630.2 716l181-181-330-330.1c-5.4-5.4-11.7-9.7-18.8-12.6l-172.8-72.8c-49-20.6-98.1 29.2-76.7 77.9"/>
-        <path fill="#e6e6e6" d="m783.9 116.8-170.3 74.7c-6.7 2.9-12.8 7.1-18 12.3L265.3 534.1l181 181 330-330c5.4-5.4 9.7-11.7 12.6-18.8l72.8-172.8c20.6-49-29.2-98.1-77.9-76.7Z"/>
-        <path fill="#ccc" d="m503.1 797.1-54 54c-8.5 8.5-22.3 8.5-30.8 0l-84.8-84.8c-8.5-8.5-22.3-8.5-30.8 0l-77.1 77.1c-8.5 8.5-8.5 22.3 0 30.8s8.5 22.3 0 30.8l-61.7 61.7c-8.5 8.5-22.3 8.5-30.8 0L17.5 851.1c-8.5-8.5-8.5-22.3 0-30.8l61.7-61.7c8.5-8.5 22.3-8.5 30.8 0s22.3 8.5 30.8 0l77.1-77.1c8.5-8.5 8.5-22.3 0-30.8L133.1 566c-8.5-8.5-8.5-22.3 0-30.8l54-54c8.5-8.5 22.3-8.5 30.8 0L503 766.3c8.5 8.5 8.5 22.3 0 30.8Z"/>
-        <path fill="#999" d="m893.2 478.2 54 54c8.5 8.5 8.5 22.3 0 30.8l-84.8 84.8c-8.5 8.5-8.5 22.3 0 30.8l77.1 77.1c8.5 8.5 22.3 8.5 30.8 0s22.3-8.5 30.8 0l61.7 61.7c8.5 8.5 8.5 22.3 0 30.8L947.2 963.8c-8.5 8.5-22.3 8.5-30.8 0l-61.7-61.7c-8.5-8.5-8.5-22.3 0-30.8s8.5-22.3 0-30.8l-77.1-77.1c-8.5-8.5-22.3-8.5-30.8 0l-84.7 84.8c-8.5 8.5-22.3 8.5-30.8 0l-54-54c-8.5-8.5-8.5-22.3 0-30.8l285.1-285.1c8.5-8.5 22.3-8.5 30.8 0Z"/>
-    </svg>`,
-
-    Vanilla: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="none" stroke="#c0bdf7" stroke-width="112.6696" stroke-miterlimit="10" d="M667.91 1000.52 549.18 558.88M536.97 546.67 91.62 424.23M549.18 546.67l329.67-333.38"/>
-        <path fill="none" stroke="#fff" stroke-width="112.6696" stroke-miterlimit="10" d="m711.29 957.14 245.97-245.97c26.84-26.84 37.32-65.96 27.5-102.63l-90.03-336c-9.82-36.67-38.46-65.3-75.13-75.13l-336-90.03c-36.67-9.82-75.79.66-102.63 27.5L135 380.85c-26.84 26.84-37.32 65.96-27.5 102.63l90.03 336c9.82 36.67 38.46 65.3 75.13 75.13l336 90.03c36.66 9.83 75.79-.65 102.63-27.5z"/>
-        <path fill="#c889e6" d="M805.48 629.12v-171c0-39.75-21.21-76.48-55.63-96.35l-148.09-85.5c-34.42-19.87-76.84-19.87-111.26 0l-148.09 85.5c-34.42 19.87-55.63 56.6-55.63 96.35v171c0 39.75 21.21 76.48 55.63 96.35l148.09 85.5c34.42 19.87 76.84 19.87 111.26 0l148.09-85.5c34.42-19.87 55.63-56.6 55.63-96.35"/>
-    </svg>`,
-
-    UHC: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#d44e50" d="M1002.44 383.44c0 198.43-152.88 402.34-462.4 544.33C230.52 785.78 77.56 581.87 77.56 383.44c0-127.68 103.52-231.2 231.27-231.2 103.73 0 161.98 58.25 231.2 163.85 69.15-105.6 127.4-163.85 231.2-163.85 127.69 0 231.21 103.51 231.21 231.2"/>
-        <path fill="none" stroke="#9d2323" stroke-width="114.6936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M283.14 393.16c27.33 60.17 75.93 120.34 145.8 180.52M796.92 393.16q-40.98 90.255-145.8 180.51"/>
-    </svg>`,
-
-    Pot: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#d65474" d="M867.63 644.62C859.91 818.87 716.16 957.78 540 957.78S220.09 818.87 212.37 644.62c115.01-29.67 230.55-35.42 327.63 0 94.58 34.51 206.02 52.74 327.63 0"/>
-        <path fill="#fff" d="M574.61 285.31v65.6c0 35.19 21.51 66.8 54.24 79.72 22.23 8.77 43.04 20.81 61.84 35.78a244.1 244.1 0 0 1 48.62 51.94c28.11 40.56 42.97 88.21 42.97 137.81 0 64.71-25.2 125.55-70.97 171.32-45.76 45.76-106.61 70.97-171.32 70.97s-125.55-25.2-171.32-70.97c-45.76-45.76-70.97-106.61-70.97-171.32 0-49.59 14.86-97.25 42.97-137.81a243.9 243.9 0 0 1 48.62-51.94c18.8-14.97 39.61-27 61.84-35.78 32.73-12.92 54.24-44.53 54.24-79.72v-65.6zm85.71-85.7H419.68v151.3c-121.6 48-207.67 166.57-207.67 305.24 0 181.14 146.85 327.99 327.99 327.99s327.99-146.85 327.99-327.99c0-138.68-86.07-257.25-207.67-305.24z"/>
-        <path fill="#fff" d="M655.37 77.64H418.03c-40.96 0-74.17 33.21-74.17 74.17s33.21 74.17 74.17 74.17h237.34c40.96 0 74.17-33.21 74.17-74.17s-33.2-74.17-74.17-74.17"/>
-    </svg>`,
-
-    NethOP: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#6e4a91" d="M318.76 910.04c139.39-61.23 285.97-65.01 441.16 0L937.7 790.79l-50.48-441.68H198.05L132.2 705.19z"/>
-        <path fill="#8f72a5" d="M784.75 950.72c-78.35 0-111.04 18.34-111.04-60.01s32.69-141.89 111.04-141.89v-.05c96.04-1.19 109.77-77.59 108.2-180.26-.7-47.21-30.55-88.28-72.44-103.75-11.5-4.29-23.93-6.62-36.9-6.62-125.4 0-159.15 34.56-159.15 101.03 0 96.48-42.05 121.98-75.26 121.98h-18.45c-33.15 0-75.21-26.97-75.21-121.98 0-58.28-25.94-92.03-116.72-99.46-12.8-1.03-26.91-1.57-42.43-1.57-60.17 0-108.41 50.19-109.34 110.37-.71 45.47 1.63 85.79 12.75 116.66 14 38.91 41.94 62.94 95.44 63.59v.05c78.35 0 86.11 63.54 86.11 141.89s-7.76 60.01-86.11 60.01c-104.29 0-159.74-46.18-189.21-113.46-36.41-82.91-33.26-197.84-33.26-298 0-330.56 210.48-411.84 467.24-411.84h3.74c174.23.49 315.8 34.46 394.81 145.85 44.06 62.07 68.64 148.19 68.64 265.99.02 181.46 10.22 411.47-222.45 411.47"/>
-        <path fill="#c7a3e8" opacity=".21" d="M381.36 890.71c0 78.35-7.76 60.01-86.11 60.01-104.29 0-159.74-46.18-189.21-113.46l93.76-152.09c14 38.91 41.94 62.94 95.44 63.59v.05c78.37 0 86.12 63.54 86.12 141.9M938.58 273.27 820.5 464.76c-11.5-4.29-23.93-6.62-36.9-6.62-125.4 0-159.15 34.56-159.15 101.03 0 96.48-42.05 121.98-75.26 121.98h-18.45c-33.15 0-75.21-26.97-75.21-121.98 0-58.28-25.94-92.03-116.72-99.46l204.94-332.3c174.26.49 315.82 34.46 394.83 145.86"/>
-    </svg>`,
-
-    SMP: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="sg_a" cx="455.166" cy="742.126" r="254.582" gradientTransform="matrix(.4023 -.07297 -.07297 .4023 195.29 58.14)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient>
-            <radialGradient id="sg_b" cx="15.845" cy="293.96" r="254.68" gradientTransform="matrix(.4023 -.07297 -.07297 .4023 195.29 58.14)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient>
-            <radialGradient id="sg_c" cx="-71.414" cy="-104.478" r="254.629" gradientTransform="matrix(-.03216 -.4597 .442 .1304 293.667 234.617)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient>
-            <radialGradient id="sg_d" cx="173.555" cy="9.686" r="254.649" gradientTransform="matrix(.07925 -.8725 .8691 .1104 227.653 415.014)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient>
-            <radialGradient id="sg_e" cx="158.943" cy="-37.444" r="143.067" gradientTransform="rotate(-45 358.127 76.959)scale(1 .8613)" gradientUnits="userSpaceOnUse"><stop offset=".621" stop-color="#40bc9e"/><stop offset=".94" stop-color="#12574b"/></radialGradient>
-            <radialGradient id="sg_f" cx="550.076" cy="-133.448" r="143.067" gradientTransform="rotate(135 359.132 90.706)scale(1 .8613)" gradientUnits="userSpaceOnUse"><stop offset=".621" stop-color="#40bc9e"/><stop offset=".94" stop-color="#12574b"/></radialGradient>
-            <radialGradient id="sg_g" cx="158.782" cy="-58.122" r="83.415" gradientTransform="rotate(-45 371.381 71.469)scale(1 .6536)" gradientUnits="userSpaceOnUse"><stop offset=".286" stop-color="#fff"/><stop offset=".691" stop-color="#40bc9e"/></radialGradient>
-            <radialGradient id="sg_h" cx="227.858" cy="-185.011" r="83.415" gradientTransform="rotate(135 195.956 152.222)scale(1 .6536)" gradientUnits="userSpaceOnUse"><stop offset=".286" stop-color="#fff"/><stop offset=".691" stop-color="#40bc9e"/></radialGradient>
-        </defs>
-        <circle cx="256.6" cy="257.7" r="215.4" fill="#10574b"/>
-        <path fill="url(#sg_a)" d="M426.6 305c-10.2 56.5-64.4 110.7-120.9 120.9s-94.1-27.3-83.9-83.9 64.5-110.7 121-121c56.7-10.2 94.2 27.4 83.8 84"/>
-        <path fill="url(#sg_b)" d="M282.7 156.7c-10.3 56.5-64.5 110.7-121 121s-94.2-27.3-83.9-83.9 64.5-110.7 121.1-121 94.1 27.2 83.8 83.9"/>
-        <path fill="url(#sg_c)" d="M241.6 136.8c62.2 18.4 116.2 85.6 120.8 150.3S320.1 389.3 258 370.9s-116.3-85.5-120.8-150.3c-4.4-64.7 42.2-102.1 104.4-83.8"/>
-        <path fill="url(#sg_d)" d="M270 42.5C392.3 58 482.3 170.1 471.1 292.8s-119.2 209.5-241.5 194C107.4 471.4 17.3 359.3 28.5 236.5S147.8 27 270 42.5"/>
-        <path fill="url(#sg_e)" d="M83.6 262.2c15.8 15.8 46.8-46.8 89.3-89.3s104.7-72 88.3-88.3c-10.7-10.7-74.2-16-133.9 43.7C73.4 182.1 68.4 247 83.6 262.2"/>
-        <path fill="url(#sg_f)" d="M426 249.6c-15.8-15.8-46.8 46.8-89.3 89.3s-104.6 71.9-88.3 88.3c10.7 10.7 74.2 16 133.9-43.7 53.9-53.9 58.9-118.7 43.7-133.9"/>
-        <path fill="url(#sg_g)" d="M106.1 210.8c7 7 27.3-27.3 52.2-52.2s58.7-44.2 51.5-51.5c-16.3-16.3-55.3 15.4-71.8 31.9-16.4 16.5-47.6 56-31.9 71.8"/>
-        <path fill="url(#sg_h)" d="M404.1 301.6c-7-7-27.3 27.3-52.2 52.2s-58.7 44.2-51.5 51.5c16.3 16.3 55.3-15.4 71.8-31.9s47.7-56 31.9-71.8"/>
-    </svg>`,
-
-    Sword: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#71bfdd" d="M901.02 120.67 722.8 198.83a61.6 61.6 0 0 0-18.81 12.85L358.24 557.43 547.71 746.9l345.41-345.41a61.6 61.6 0 0 0 13.21-19.64l76.18-180.86c21.62-51.31-30.51-102.68-81.49-80.32"/>
-        <path fill="#6195d9" d="m607.14 832.65-56.51 56.47c-8.89 8.89-23.31 8.88-32.2-.01l-88.72-88.72c-8.89-8.89-23.32-8.89-32.21 0l-80.66 80.71c-8.89 8.89-8.89 23.31 0 32.2s8.89 23.31 0 32.2l-64.52 64.52c-8.89 8.89-23.31 8.89-32.2 0L99.14 889.04c-8.89-8.89-8.89-23.31 0-32.2l64.52-64.52c8.89-8.89 23.31-8.89 32.2 0l.06.06c8.89 8.89 23.32 8.89 32.21 0l80.66-80.71c8.89-8.89 8.89-23.31 0-32.2l-88.72-88.72c-8.9-8.9-8.89-23.32.01-32.21l56.51-56.47c8.89-8.89 23.31-8.88 32.2.01l298.37 298.37c8.88 8.88 8.88 23.3-.02 32.2"/>
-    </svg>`,
-
-    Axe: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#6195d9" d="M89.46 873.94c-28.21-28.21-28.21-73.95 0-102.16l499.03-499.03 102.16 102.16-499.03 499.03c-28.21 28.21-73.95 28.21-102.16 0"/>
-        <path fill="#71bfdd" d="m597.64 478.85 91.26 104.78c34.95 40.12 96.57 42.25 134.19 4.62l157.16-157.16c41.16-41.16 34.14-109.73-14.5-141.69l-118.3-77.74c-36.39-23.92-84.58-18.98-115.38 11.81L601.95 353.59c-34.13 34.13-36.02 88.86-4.31 125.26"/>
-        <path fill="#71bfdd" d="m542.1 336.38 147.79 147.79c22.12 22.12 57.99 22.12 80.11 0l69.2-69.2c22.12-22.12 22.12-57.99 0-80.11L691.41 187.07c-22.12-22.12-57.99-22.12-80.11 0l-69.2 69.2c-22.12 22.13-22.12 57.99 0 80.11"/>
-    </svg>`,
-
-    Mace: (s=26) => `<svg width="${s}" height="${s}" viewBox="0 0 750 750" xmlns="http://www.w3.org/2000/svg">
-        <path fill="#60606b" style="opacity:.988" d="M574.5 131.5a50 50 0 0 1 2.5 7 373 373 0 0 1 15.5 17q-.69 7.764-4.5 15a820 820 0 0 1-42.5 41 108 108 0 0 0-8 9.5 23 23 0 0 1-5 2l-56 56a7463 7463 0 0 0-14 12l-61 61q-3.822 3.663-9 5-8.923.306-17.5-2.5l-1.5.5q1.129 1.006 1 2.5-10.083-13.843-23-25.5a28 28 0 0 1-4-1.5 9331 9331 0 0 0-83-101q-5.832-15.26 7-25.5a20587 20587 0 0 1 179-166q9-5 18 0a11266 11266 0 0 0 106 93.5"/>
-        <path fill="#5b5b6d" style="opacity:.973" d="M618.5 176.5a147 147 0 0 1-8-2.5 157.7 157.7 0 0 0-18-18.5 373 373 0 0 0-15.5-17 50 50 0 0 0-2.5-7q-.25-30.005.5-60 2.913-9.414 12.5-11.5a2209 2209 0 0 1 94 0q7.75 1.75 9.5 9.5l.5 47q.207 25.575-1.5 51-3.333 5.832-9.5 8.5-30.996.75-62 .5"/>
-        <path fill="#444451" d="M459.5 109.5q13.206-.54 15 12.5a495 495 0 0 1-6.5 33.5 409.5 409.5 0 0 1-10.5 61 103 103 0 0 0-7 6.5 1746 1746 0 0 0-98 20q-9.29 2.567-15.5-4.5a25.2 25.2 0 0 1 0-10q6.556-9.711 16.5-16.5a15647 15647 0 0 0 106-102.5"/>
-        <path fill="#4d4d5c" style="opacity:.993" d="M592.5 155.5a157.7 157.7 0 0 1 18 18.5q4.126 1.414 8 2.5 30.047 33.787 65.5 64a796 796 0 0 1 32 35q7.39 10.42-1 20A20370 20370 0 0 1 548.5 467a59.5 59.5 0 0 1-13.5 4.5 38.5 38.5 0 0 1-14.5-5.5 454 454 0 0 1-41-28 2997 2997 0 0 0-58-39.5q-1.977-5.748-7-9.5a259 259 0 0 1-40-31.5q.129-1.494-1-2.5l1.5-.5q8.577 2.806 17.5 2.5 5.178-1.337 9-5l61-61a7463 7463 0 0 1 14-12l56-56a23 23 0 0 0 5-2 108 108 0 0 1 8-9.5 820 820 0 0 0 42.5-41q3.81-7.236 4.5-15"/>
-        <path fill="#444451" d="M632.5 274.5q13.521-3.004 17 10a41.8 41.8 0 0 1-3.5 8Q588.33 348.168 530.5 404q-14.645 8.784-18-8 6.668-41.755 13.5-83.5-.579-16.673 15.5-19.5a3134 3134 0 0 0 91-18.5"/>
-        <path fill="#9191b7" style="opacity:.961" d="M347.5 330.5q1.899.885 4 1.5 12.917 11.657 23 25.5a259 259 0 0 0 40 31.5q5.023 3.752 7 9.5a2385 2385 0 0 1-59 57q-5.56 2.784-10 7.5.834.574 1 1.5-5 6-11 11-1.22-1.73-3 0-1.393 1.783-1 4l-6 5h-3v3a148891 148891 0 0 1-37 36q-.595-1.538-2-.5-6.405 5.642-11 12.5a55 55 0 0 1-7 7q.197-1.314-1-2a32.5 32.5 0 0 1-5 4.5l1 1a4.93 4.93 0 0 1-3 .5v4q-6.961 6.458-14 13a127 127 0 0 0-11 8.5q.834.575 1 1.5-8.5 7.5-16 16a2.43 2.43 0 0 0-2 .5q-1.857 1.035 0 1.5a335 335 0 0 0-27.5 26 939 939 0 0 0-2 59q-5.44 13.435-19.5 17.5-52.545.678-105-2-9.639-5.032-12.5-15.5-1-33 0-66 .11-20.582 2-41 4.788-8.787 13.5-13.5a778 778 0 0 1 52-2 3432 3432 0 0 0 98.5-98.5 7390 7390 0 0 0 125.5-125"/>
-    </svg>`,
+    Overall: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#ffaf00" d="M859.15 273.15v63.71c0 178.72-143.67 421.78-322.07 425.6-1.59.32-2.87.32-4.46.32-180.31 0-326.53-245.61-326.53-425.92v-132c0-90.15 73.27-95.14 163.42-95.14h326.21c90.16.01 163.43 73.28 163.43 163.43"/><path fill="#ffaf00" d="M621.19 376.68v445.67c0 47.47-37.27 86.01-84.1 88.56h-4.46c-49.06 0-88.56-39.5-88.56-88.56V376.68c0-49.06 39.5-88.88 88.56-88.88 49.05 0 88.56 39.82 88.56 88.88"/><path fill="#ffaf00" d="M735.55 929.39c0 26.76-21.66 48.74-48.42 48.74H378.12c-26.76 0-48.42-21.98-48.42-48.74 0-29.31 12.11-56.07 31.22-75.5 19.43-19.43 46.19-31.54 75.82-31.54h191.78c59.25 0 107.03 48.1 107.03 107.04"/><path fill="none" stroke="#ffa100" stroke-width="96.3669" stroke-linecap="round" stroke-miterlimit="10" d="M818.15 230.53s176.32-42.77 176.32 95.25c0 61.35-76.97 427.02-302.58 345.67"/><path fill="none" stroke="#ffaf00" stroke-width="96.3669" stroke-linecap="round" stroke-miterlimit="10" d="M255.71 230.53S79.39 187.76 79.39 325.78c0 61.35 76.97 427.02 302.58 345.67"/><path fill="#ffa100" d="M621.19 742.71v79.64h7.33c59.25 0 107.04 48.1 107.04 107.04 0 26.76-21.66 48.74-48.42 48.74H537.09v-868.4h158.64c90.15 0 163.42 4.98 163.42 95.14v132c0 149.4-100.66 344.04-237.96 405.84"/></svg>`,
+    LTMs: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#ccc" d="m212.9 197.4 74.7 170.3c2.9 6.7 7.1 12.8 12.3 18L630.2 716l181-181-330-330.1c-5.4-5.4-11.7-9.7-18.8-12.6l-172.8-72.8c-49-20.6-98.1 29.2-76.7 77.9"/><path fill="#e6e6e6" d="m783.9 116.8-170.3 74.7c-6.7 2.9-12.8 7.1-18 12.3L265.3 534.1l181 181 330-330c5.4-5.4 9.7-11.7 12.6-18.8l72.8-172.8c20.6-49-29.2-98.1-77.9-76.7Z"/><path fill="#ccc" d="m503.1 797.1-54 54c-8.5 8.5-22.3 8.5-30.8 0l-84.8-84.8c-8.5-8.5-22.3-8.5-30.8 0l-77.1 77.1c-8.5 8.5-8.5 22.3 0 30.8s8.5 22.3 0 30.8l-61.7 61.7c-8.5 8.5-22.3 8.5-30.8 0L17.5 851.1c-8.5-8.5-8.5-22.3 0-30.8l61.7-61.7c8.5-8.5 22.3-8.5 30.8 0s22.3 8.5 30.8 0l77.1-77.1c8.5-8.5 8.5-22.3 0-30.8L133.1 566c-8.5-8.5-8.5-22.3 0-30.8l54-54c8.5-8.5 22.3-8.5 30.8 0L503 766.3c8.5 8.5 8.5 22.3 0 30.8Z"/><path fill="#999" d="m893.2 478.2 54 54c8.5 8.5 8.5 22.3 0 30.8l-84.8 84.8c-8.5 8.5-8.5 22.3 0 30.8l77.1 77.1c8.5 8.5 22.3 8.5 30.8 0s22.3-8.5 30.8 0l61.7 61.7c8.5 8.5 8.5 22.3 0 30.8L947.2 963.8c-8.5 8.5-22.3 8.5-30.8 0l-61.7-61.7c-8.5-8.5-8.5-22.3 0-30.8s8.5-22.3 0-30.8l-77.1-77.1c-8.5-8.5-22.3-8.5-30.8 0l-84.7 84.8c-8.5 8.5-22.3 8.5-30.8 0l-54-54c-8.5-8.5-8.5-22.3 0-30.8l285.1-285.1c8.5-8.5 22.3-8.5 30.8 0Z"/></svg>`,
+    Vanilla: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="#c0bdf7" stroke-width="112.6696" stroke-miterlimit="10" d="M667.91 1000.52 549.18 558.88M536.97 546.67 91.62 424.23M549.18 546.67l329.67-333.38"/><path fill="none" stroke="#fff" stroke-width="112.6696" stroke-miterlimit="10" d="m711.29 957.14 245.97-245.97c26.84-26.84 37.32-65.96 27.5-102.63l-90.03-336c-9.82-36.67-38.46-65.3-75.13-75.13l-336-90.03c-36.67-9.82-75.79.66-102.63 27.5L135 380.85c-26.84 26.84-37.32 65.96-27.5 102.63l90.03 336c9.82 36.67 38.46 65.3 75.13 75.13l336 90.03c36.66 9.83 75.79-.65 102.63-27.5z"/><path fill="#c889e6" d="M805.48 629.12v-171c0-39.75-21.21-76.48-55.63-96.35l-148.09-85.5c-34.42-19.87-76.84-19.87-111.26 0l-148.09 85.5c-34.42 19.87-55.63 56.6-55.63 96.35v171c0 39.75 21.21 76.48 55.63 96.35l148.09 85.5c34.42 19.87 76.84 19.87 111.26 0l148.09-85.5c34.42-19.87 55.63-56.6 55.63-96.35"/></svg>`,
+    UHC: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#d44e50" d="M1002.44 383.44c0 198.43-152.88 402.34-462.4 544.33C230.52 785.78 77.56 581.87 77.56 383.44c0-127.68 103.52-231.2 231.27-231.2 103.73 0 161.98 58.25 231.2 163.85 69.15-105.6 127.4-163.85 231.2-163.85 127.69 0 231.21 103.51 231.21 231.2"/><path fill="none" stroke="#9d2323" stroke-width="114.6936" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M283.14 393.16c27.33 60.17 75.93 120.34 145.8 180.52M796.92 393.16q-40.98 90.255-145.8 180.51"/></svg>`,
+    Pot: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#d65474" d="M867.63 644.62C859.91 818.87 716.16 957.78 540 957.78S220.09 818.87 212.37 644.62c115.01-29.67 230.55-35.42 327.63 0 94.58 34.51 206.02 52.74 327.63 0"/><path fill="#fff" d="M574.61 285.31v65.6c0 35.19 21.51 66.8 54.24 79.72 22.23 8.77 43.04 20.81 61.84 35.78a244.1 244.1 0 0 1 48.62 51.94c28.11 40.56 42.97 88.21 42.97 137.81 0 64.71-25.2 125.55-70.97 171.32-45.76 45.76-106.61 70.97-171.32 70.97s-125.55-25.2-171.32-70.97c-45.76-45.76-70.97-106.61-70.97-171.32 0-49.59 14.86-97.25 42.97-137.81a243.9 243.9 0 0 1 48.62-51.94c18.8-14.97 39.61-27 61.84-35.78 32.73-12.92 54.24-44.53 54.24-79.72v-65.6zm85.71-85.7H419.68v151.3c-121.6 48-207.67 166.57-207.67 305.24 0 181.14 146.85 327.99 327.99 327.99s327.99-146.85 327.99-327.99c0-138.68-86.07-257.25-207.67-305.24z"/><path fill="#fff" d="M655.37 77.64H418.03c-40.96 0-74.17 33.21-74.17 74.17s33.21 74.17 74.17 74.17h237.34c40.96 0 74.17-33.21 74.17-74.17s-33.2-74.17-74.17-74.17"/></svg>`,
+    NethOP: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#6e4a91" d="M318.76 910.04c139.39-61.23 285.97-65.01 441.16 0L937.7 790.79l-50.48-441.68H198.05L132.2 705.19z"/><path fill="#8f72a5" d="M784.75 950.72c-78.35 0-111.04 18.34-111.04-60.01s32.69-141.89 111.04-141.89v-.05c96.04-1.19 109.77-77.59 108.2-180.26-.7-47.21-30.55-88.28-72.44-103.75-11.5-4.29-23.93-6.62-36.9-6.62-125.4 0-159.15 34.56-159.15 101.03 0 96.48-42.05 121.98-75.26 121.98h-18.45c-33.15 0-75.21-26.97-75.21-121.98 0-58.28-25.94-92.03-116.72-99.46-12.8-1.03-26.91-1.57-42.43-1.57-60.17 0-108.41 50.19-109.34 110.37-.71 45.47 1.63 85.79 12.75 116.66 14 38.91 41.94 62.94 95.44 63.59v.05c78.35 0 86.11 63.54 86.11 141.89s-7.76 60.01-86.11 60.01c-104.29 0-159.74-46.18-189.21-113.46-36.41-82.91-33.26-197.84-33.26-298 0-330.56 210.48-411.84 467.24-411.84h3.74c174.23.49 315.8 34.46 394.81 145.85 44.06 62.07 68.64 148.19 68.64 265.99.02 181.46 10.22 411.47-222.45 411.47"/><path fill="#c7a3e8" opacity=".21" d="M381.36 890.71c0 78.35-7.76 60.01-86.11 60.01-104.29 0-159.74-46.18-189.21-113.46l93.76-152.09c14 38.91 41.94 62.94 95.44 63.59v.05c78.37 0 86.12 63.54 86.12 141.9M938.58 273.27 820.5 464.76c-11.5-4.29-23.93-6.62-36.9-6.62-125.4 0-159.15 34.56-159.15 101.03 0 96.48-42.05 121.98-75.26 121.98h-18.45c-33.15 0-75.21-26.97-75.21-121.98 0-58.28-25.94-92.03-116.72-99.46l204.94-332.3c174.26.49 315.82 34.46 394.83 145.86"/></svg>`,
+    SMP: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="sg_a" cx="455.166" cy="742.126" r="254.582" gradientTransform="matrix(.4023 -.07297 -.07297 .4023 195.29 58.14)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="sg_b" cx="15.845" cy="293.96" r="254.68" gradientTransform="matrix(.4023 -.07297 -.07297 .4023 195.29 58.14)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="sg_c" cx="-71.414" cy="-104.478" r="254.629" gradientTransform="matrix(-.03216 -.4597 .442 .1304 293.667 234.617)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="sg_d" cx="173.555" cy="9.686" r="254.649" gradientTransform="matrix(.07925 -.8725 .8691 .1104 227.653 415.014)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#010202"/><stop offset=".863" stop-color="#000" stop-opacity="0"/></radialGradient><radialGradient id="sg_e" cx="158.943" cy="-37.444" r="143.067" gradientTransform="rotate(-45 358.127 76.959)scale(1 .8613)" gradientUnits="userSpaceOnUse"><stop offset=".621" stop-color="#40bc9e"/><stop offset=".94" stop-color="#12574b"/></radialGradient><radialGradient id="sg_f" cx="550.076" cy="-133.448" r="143.067" gradientTransform="rotate(135 359.132 90.706)scale(1 .8613)" gradientUnits="userSpaceOnUse"><stop offset=".621" stop-color="#40bc9e"/><stop offset=".94" stop-color="#12574b"/></radialGradient><radialGradient id="sg_g" cx="158.782" cy="-58.122" r="83.415" gradientTransform="rotate(-45 371.381 71.469)scale(1 .6536)" gradientUnits="userSpaceOnUse"><stop offset=".286" stop-color="#fff"/><stop offset=".691" stop-color="#40bc9e"/></radialGradient><radialGradient id="sg_h" cx="227.858" cy="-185.011" r="83.415" gradientTransform="rotate(135 195.956 152.222)scale(1 .6536)" gradientUnits="userSpaceOnUse"><stop offset=".286" stop-color="#fff"/><stop offset=".691" stop-color="#40bc9e"/></radialGradient></defs><circle cx="256.6" cy="257.7" r="215.4" fill="#10574b"/><path fill="url(#sg_a)" d="M426.6 305c-10.2 56.5-64.4 110.7-120.9 120.9s-94.1-27.3-83.9-83.9 64.5-110.7 121-121c56.7-10.2 94.2 27.4 83.8 84"/><path fill="url(#sg_b)" d="M282.7 156.7c-10.3 56.5-64.5 110.7-121 121s-94.2-27.3-83.9-83.9 64.5-110.7 121.1-121 94.1 27.2 83.8 83.9"/><path fill="url(#sg_c)" d="M241.6 136.8c62.2 18.4 116.2 85.6 120.8 150.3S320.1 389.3 258 370.9s-116.3-85.5-120.8-150.3c-4.4-64.7 42.2-102.1 104.4-83.8"/><path fill="url(#sg_d)" d="M270 42.5C392.3 58 482.3 170.1 471.1 292.8s-119.2 209.5-241.5 194C107.4 471.4 17.3 359.3 28.5 236.5S147.8 27 270 42.5"/><path fill="url(#sg_e)" d="M83.6 262.2c15.8 15.8 46.8-46.8 89.3-89.3s104.7-72 88.3-88.3c-10.7-10.7-74.2-16-133.9 43.7C73.4 182.1 68.4 247 83.6 262.2"/><path fill="url(#sg_f)" d="M426 249.6c-15.8-15.8-46.8 46.8-89.3 89.3s-104.6 71.9-88.3 88.3c10.7 10.7 74.2 16 133.9-43.7 53.9-53.9 58.9-118.7 43.7-133.9"/><path fill="url(#sg_g)" d="M106.1 210.8c7 7 27.3-27.3 52.2-52.2s58.7-44.2 51.5-51.5c-16.3-16.3-55.3 15.4-71.8 31.9-16.4 16.5-47.6 56-31.9 71.8"/><path fill="url(#sg_h)" d="M404.1 301.6c-7-7-27.3 27.3-52.2 52.2s-58.7 44.2-51.5 51.5c16.3 16.3 55.3-15.4 71.8-31.9s47.7-56 31.9-71.8"/></svg>`,
+    Sword: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#71bfdd" d="M901.02 120.67 722.8 198.83a61.6 61.6 0 0 0-18.81 12.85L358.24 557.43 547.71 746.9l345.41-345.41a61.6 61.6 0 0 0 13.21-19.64l76.18-180.86c21.62-51.31-30.51-102.68-81.49-80.32"/><path fill="#6195d9" d="m607.14 832.65-56.51 56.47c-8.89 8.89-23.31 8.88-32.2-.01l-88.72-88.72c-8.89-8.89-23.32-8.89-32.21 0l-80.66 80.71c-8.89 8.89-8.89 23.31 0 32.2s8.89 23.31 0 32.2l-64.52 64.52c-8.89 8.89-23.31 8.89-32.2 0L99.14 889.04c-8.89-8.89-8.89-23.31 0-32.2l64.52-64.52c8.89-8.89 23.31-8.89 32.2 0l.06.06c8.89 8.89 23.32 8.89 32.21 0l80.66-80.71c8.89-8.89 8.89-23.31 0-32.2l-88.72-88.72c-8.9-8.9-8.89-23.32.01-32.21l56.51-56.47c8.89-8.89 23.31-8.88 32.2.01l298.37 298.37c8.88 8.88 8.88 23.3-.02 32.2"/></svg>`,
+    Axe: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg"><path fill="#6195d9" d="M89.46 873.94c-28.21-28.21-28.21-73.95 0-102.16l499.03-499.03 102.16 102.16-499.03 499.03c-28.21 28.21-73.95 28.21-102.16 0"/><path fill="#71bfdd" d="m597.64 478.85 91.26 104.78c34.95 40.12 96.57 42.25 134.19 4.62l157.16-157.16c41.16-41.16 34.14-109.73-14.5-141.69l-118.3-77.74c-36.39-23.92-84.58-18.98-115.38 11.81L601.95 353.59c-34.13 34.13-36.02 88.86-4.31 125.26"/><path fill="#71bfdd" d="m542.1 336.38 147.79 147.79c22.12 22.12 57.99 22.12 80.11 0l69.2-69.2c22.12-22.12 22.12-57.99 0-80.11L691.41 187.07c-22.12-22.12-57.99-22.12-80.11 0l-69.2 69.2c-22.12 22.13-22.12 57.99 0 80.11"/></svg>`,
+    Mace: (s=28) => `<svg width="${s}" height="${s}" viewBox="0 0 750 750" xmlns="http://www.w3.org/2000/svg"><path fill="#60606b" style="opacity:.988" d="M574.5 131.5a50 50 0 0 1 2.5 7 373 373 0 0 1 15.5 17q-.69 7.764-4.5 15a820 820 0 0 1-42.5 41 108 108 0 0 0-8 9.5 23 23 0 0 1-5 2l-56 56a7463 7463 0 0 0-14 12l-61 61q-3.822 3.663-9 5-8.923.306-17.5-2.5l-1.5.5q1.129 1.006 1 2.5-10.083-13.843-23-25.5a28 28 0 0 1-4-1.5 9331 9331 0 0 0-83-101q-5.832-15.26 7-25.5a20587 20587 0 0 1 179-166q9-5 18 0a11266 11266 0 0 0 106 93.5"/><path fill="#5b5b6d" style="opacity:.973" d="M618.5 176.5a147 147 0 0 1-8-2.5 157.7 157.7 0 0 0-18-18.5 373 373 0 0 0-15.5-17 50 50 0 0 0-2.5-7q-.25-30.005.5-60 2.913-9.414 12.5-11.5a2209 2209 0 0 1 94 0q7.75 1.75 9.5 9.5l.5 47q.207 25.575-1.5 51-3.333 5.832-9.5 8.5-30.996.75-62 .5"/><path fill="#444451" d="M459.5 109.5q13.206-.54 15 12.5a495 495 0 0 1-6.5 33.5 409.5 409.5 0 0 1-10.5 61 103 103 0 0 0-7 6.5 1746 1746 0 0 0-98 20q-9.29 2.567-15.5-4.5a25.2 25.2 0 0 1 0-10q6.556-9.711 16.5-16.5a15647 15647 0 0 0 106-102.5"/><path fill="#4d4d5c" style="opacity:.993" d="M592.5 155.5a157.7 157.7 0 0 1 18 18.5q4.126 1.414 8 2.5 30.047 33.787 65.5 64a796 796 0 0 1 32 35q7.39 10.42-1 20A20370 20370 0 0 1 548.5 467a59.5 59.5 0 0 1-13.5 4.5 38.5 38.5 0 0 1-14.5-5.5 454 454 0 0 1-41-28 2997 2997 0 0 0-58-39.5q-1.977-5.748-7-9.5a259 259 0 0 1-40-31.5q.129-1.494-1-2.5l1.5-.5q8.577 2.806 17.5 2.5 5.178-1.337 9-5l61-61a7463 7463 0 0 1 14-12l56-56a23 23 0 0 0 5-2 108 108 0 0 1 8-9.5 820 820 0 0 0 42.5-41q3.81-7.236 4.5-15"/><path fill="#444451" d="M632.5 274.5q13.521-3.004 17 10a41.8 41.8 0 0 1-3.5 8Q588.33 348.168 530.5 404q-14.645 8.784-18-8 6.668-41.755 13.5-83.5-.579-16.673 15.5-19.5a3134 3134 0 0 0 91-18.5"/><path fill="#9191b7" style="opacity:.961" d="M347.5 330.5q1.899.885 4 1.5 12.917 11.657 23 25.5a259 259 0 0 0 40 31.5q5.023 3.752 7 9.5a2385 2385 0 0 1-59 57q-5.56 2.784-10 7.5.834.574 1 1.5-5 6-11 11-1.22-1.73-3 0-1.393 1.783-1 4l-6 5h-3v3a148891 148891 0 0 1-37 36q-.595-1.538-2-.5-6.405 5.642-11 12.5a55 55 0 0 1-7 7q.197-1.314-1-2a32.5 32.5 0 0 1-5 4.5l1 1a4.93 4.93 0 0 1-3 .5v4q-6.961 6.458-14 13a127 127 0 0 0-11 8.5q.834.575 1 1.5-8.5 7.5-16 16a2.43 2.43 0 0 0-2 .5q-1.857 1.035 0 1.5a335 335 0 0 0-27.5 26 939 939 0 0 0-2 59q-5.44 13.435-19.5 17.5-52.545.678-105-2-9.639-5.032-12.5-15.5-1-33 0-66 .11-20.582 2-41 4.788-8.787 13.5-13.5a778 778 0 0 1 52-2 3432 3432 0 0 0 98.5-98.5 7390 7390 0 0 0 125.5-125"/></svg>`,
 };
 
-// ── Constants ─────────────────────────────────────────────────
-const MODES = ["Overall","Vanilla","LTMs","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
-const TIER_PTS = { HT1:50,LT1:45,HT2:40,LT2:35,HT3:30,LT3:25,HT4:20,LT4:15,HT5:10,LT5:5 };
-const COMBAT_RANKS = [[380,"Combat Legend"],[280,"Combat Master"],[190,"Combat Ace"],[120,"Combat Expert"],[60,"Combat Warrior"],[0,"Combat Rookie"]];
-const RANK_COLORS  = {"Combat Legend":"#e84040","Combat Master":"#e87820","Combat Ace":"#d4a800","Combat Expert":"#3aaa50","Combat Warrior":"#4a70e8","Combat Rookie":"#5a6070"};
-const DISPLAY_MODES = ["LTMs","Vanilla","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
+const MODES      = ["Overall","Vanilla","LTMs","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
+const GAME_MODES = ["LTMs","Vanilla","UHC","Pot","NethOP","SMP","Sword","Axe","Mace"];
+const TIER_CLR   = {HT1:'#e84040',LT1:'#e86060',HT2:'#e87820',LT2:'#e89840',HT3:'#d4a800',LT3:'#d4bc40',HT4:'#3aaa50',LT4:'#60c070',HT5:'#4a70e8',LT5:'#7090e0'};
+const COL_CLR    = ['#e84040','#e87820','#d4a800','#3aaa50','#4a70e8'];
 
 let currentMode = "Overall";
 let players = {};
 
 function getTier(elo) {
-    if(elo>=2400)return"HT1";if(elo>=2200)return"LT1";
-    if(elo>=2000)return"HT2";if(elo>=1800)return"LT2";
-    if(elo>=1600)return"HT3";if(elo>=1400)return"LT3";
-    if(elo>=1300)return"HT4";if(elo>=1200)return"LT4";
+    if(elo>=2400)return"HT1";if(elo>=2200)return"LT1";if(elo>=2000)return"HT2";if(elo>=1800)return"LT2";
+    if(elo>=1600)return"HT3";if(elo>=1400)return"LT3";if(elo>=1300)return"HT4";if(elo>=1200)return"LT4";
     if(elo>=1100)return"HT5";return"LT5";
 }
-function totalPoints(p) { return Object.values(p.elo).reduce((s,e)=>s+(TIER_PTS[getTier(e)]||0),0); }
-function combatRank(pts) { for(const[t,l]of COMBAT_RANKS)if(pts>=t)return l; return"Combat Rookie"; }
+function avgElo(p) { const v=Object.values(p.elo); return Math.round(v.reduce((s,n)=>s+n,0)/v.length); }
+function bestTier(p) { return getTier(Math.max(...Object.values(p.elo))); }
+
+function renderTabs() {
+    document.getElementById('tabs').innerHTML = MODES.map(m => `
+        <div class="tab ${m===currentMode?'active':''}" onclick="setMode('${m}')">
+            <div class="tab-icon">${ICONS[m](28)}</div>
+            <span class="tab-label">${m}</span>
+        </div>`).join('');
+}
+function setMode(m) { if(currentMode===m)return; currentMode=m; renderTabs(); render(); }
 
 function tierCircle(mode, elo) {
-    const tier   = getTier(elo);
-    const cls    = tier.toLowerCase();
-    const iconFn = ICONS[mode];
-    const iconSvg = iconFn ? iconFn(16) : '';
-    return `
-    <div class="tier-icon-wrap">
-        <div class="tier-circle t-${cls}" title="${mode}: ${tier} (${elo})">${iconSvg}</div>
-        <div class="tier-lbl lbl-${cls}">${tier}</div>
+    const tier=getTier(elo), cls=tier.toLowerCase();
+    return `<div class="tier-wrap">
+        <div class="tier-circle t-${cls}" title="${mode}: ${tier} (${elo})">${ICONS[mode](14)}</div>
+        <span class="tier-tag tag-${cls}">${tier}</span>
     </div>`;
+}
+
+function render() {
+    const el   = document.getElementById('content');
+    const q    = document.getElementById('search').value.toLowerCase();
+    const list = Object.values(players).filter(p=>(p.ign||p.name).toLowerCase().includes(q));
+    el.innerHTML = '';
+    currentMode==='Overall' ? renderOverall(el,list) : renderMode(el,list);
+}
+
+function renderOverall(el, list) {
+    list.sort((a,b)=>avgElo(b)-avgElo(a));
+    const header = `<div class="mode-header">
+        <div class="mode-icon-lg">${ICONS.Overall(28)}</div>
+        <div><div class="mode-title">Overall Rankings</div><div class="mode-sub">Sorted by average ELO across all modes</div></div>
+        <div class="mode-count">${list.length} PLAYER${list.length!==1?'S':''}</div>
+    </div>`;
+
+    if(!list.length){ el.innerHTML=header+`<div class="empty-state"><h3>No players yet</h3><p>Verify some players to get started.</p></div>`; return; }
+
+    const rows = list.map((p,i)=>{
+        const ign=p.ign||p.name, avg=avgElo(p), best=bestTier(p);
+        const rnCls=i===0?'r1':i===1?'r2':i===2?'r3':'';
+        return `<tr class="lb-row" style="animation-delay:${i*0.04}s">
+            <td class="td-rank"><span class="rank-num ${rnCls}">${i+1}</span></td>
+            <td class="td-player"><div class="player-inner">
+                <img class="player-skin" src="https://mc-heads.net/avatar/${ign}/44" loading="lazy">
+                <div>
+                    <div class="player-name">${ign}</div>
+                    <div class="player-best"><div class="best-dot" style="background:${TIER_CLR[best]||'#5a6070'}"></div>Best: ${best}</div>
+                </div>
+            </div></td>
+            <td class="td-region"><span class="region-pill region-NA">NA</span></td>
+            <td class="td-tiers"><div class="tier-circles">${GAME_MODES.map(m=>tierCircle(m,p.elo[m]??1000)).join('')}</div></td>
+            <td class="td-elo"><div class="elo-num">${avg}</div><div class="elo-label">avg elo</div></td>
+        </tr>`;
+    }).join('');
+
+    el.innerHTML = header + `<table class="lb-table">
+        <thead><tr><th>#</th><th>PLAYER</th><th>REGION</th><th>TIERS</th><th class="right">AVG ELO</th></tr></thead>
+        <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function renderMode(el, list) {
+    const mode=currentMode, cols={1:[],2:[],3:[],4:[],5:[]};
+    list.forEach(p=>{ const elo=p.elo[mode]; if(elo===undefined)return; const tier=getTier(elo),num=parseInt(tier.replace(/\D/g,'')); if(cols[num])cols[num].push({...p,_elo:elo,_tier:tier}); });
+    const total=Object.values(cols).reduce((s,c)=>s+c.length,0);
+
+    const header=`<div class="mode-header">
+        <div class="mode-icon-lg">${ICONS[mode](28)}</div>
+        <div><div class="mode-title">${mode}</div><div class="mode-sub">Players ranked by ELO</div></div>
+        <div class="mode-count">${total} PLAYER${total!==1?'S':''}</div>
+    </div>`;
+
+    if(!total){ el.innerHTML=header+`<div class="empty-state"><h3>No players in ${mode} yet</h3><p>Report some matches to populate this.</p></div>`; return; }
+
+    let grid=`<div class="tier-grid">`;
+    for(let t=1;t<=5;t++){
+        const col=cols[t].sort((a,b)=>b._elo-a._elo), color=COL_CLR[t-1];
+        const rows=col.map(p=>{
+            const ign=p.ign||p.name;
+            return `<div class="tier-player">
+                <div class="tier-player-left"><img class="tier-avatar" src="https://mc-heads.net/avatar/${ign}/22" loading="lazy"><span class="tier-player-name">${ign}</span></div>
+                <div class="tier-player-right"><div class="tier-player-tier tag-${p._tier.toLowerCase()}">${p._tier}</div><div class="tier-player-elo">${p._elo}</div></div>
+            </div>`;
+        }).join('')||`<div class="empty-col">—</div>`;
+        grid+=`<div class="tier-col fade-in" style="animation-delay:${(t-1)*0.06}s">
+            <div class="tier-col-head" style="border-top-color:${color}">
+                <span class="tier-col-name" style="color:${color}">T${t}</span>
+                <span class="tier-col-count">${col.length} PLAYER${col.length!==1?'S':''}</span>
+            </div>${rows}</div>`;
+    }
+    el.innerHTML=header+grid+`</div>`;
 }
 
 async function refresh() {
     try {
-        const res  = await fetch('players.json?t=' + Date.now());
-        const data = await res.json();
-        players    = data.players;
-        renderTabs();
-        render();
+        const res=await fetch('players.json?t='+Date.now());
+        const data=await res.json();
+        players=data.players; renderTabs(); render();
     } catch(e) { console.log("Waiting for data..."); }
 }
-
-function renderTabs() {
-    document.getElementById('tabs').innerHTML = MODES.map(m => {
-        const iconFn  = ICONS[m];
-        const iconSvg = iconFn ? iconFn(26) : '';
-        return `
-        <div class="tab ${m===currentMode?'active':''}" onclick="setMode('${m}')">
-            <div class="tab-icon-wrap">${iconSvg}</div>
-            ${m}
-        </div>`;
-    }).join('');
-}
-
-function setMode(m) {
-    if(currentMode===m) return;
-    currentMode = m;
-    renderTabs();
-    render();
-}
-
-function render() {
-    const el     = document.getElementById('content');
-    const search = document.getElementById('search').value.toLowerCase();
-    const list   = Object.values(players).filter(p=>(p.ign||p.name).toLowerCase().includes(search));
-    el.innerHTML = '';
-    if(currentMode==='Overall') renderOverall(el, list);
-    else                        renderGrid(el, list);
-}
-
-function renderOverall(el, list) {
-    list.sort((a,b)=>totalPoints(b)-totalPoints(a));
-    if(!list.length){
-        el.innerHTML=`<div class="empty-state"><h3>No players yet</h3><p>Verify some players to get started!</p></div>`;
-        return;
-    }
-
-    let html = `<div>
-        <div class="lb-head">
-            <div>#</div><div>PLAYER</div><div>REGION</div><div>TIERS</div>
-            <div style="text-align:right;padding-right:20px">PTS</div>
-        </div>`;
-
-    list.forEach((p,i)=>{
-        const ign     = p.ign||p.name;
-        const pts     = totalPoints(p);
-        const cr      = combatRank(pts);
-        const rankCls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
-        const tierIcons = DISPLAY_MODES.map(m=>tierCircle(m, p.elo[m]??1000)).join('');
-
-        html+=`
-        <div class="lb-row ${rankCls}">
-            <div class="rank-cell"><div class="rank-badge">${i+1}</div></div>
-            <div class="player-cell">
-                <img class="player-avatar" src="https://mc-heads.net/avatar/${ign}/48" loading="lazy">
-                <div>
-                    <div class="player-name">${ign}</div>
-                    <div class="player-rank-label">
-                        <div class="rank-diamond" style="background:${RANK_COLORS[cr]||'#5a6070'}"></div>
-                        ${cr} &nbsp;·&nbsp; ${pts} pts
-                    </div>
-                </div>
-            </div>
-            <div class="region-cell"><span class="region-badge region-NA">NA</span></div>
-            <div class="tiers-cell">${tierIcons}</div>
-            <div class="pts-cell"><span>${pts}</span></div>
-        </div>`;
-    });
-
-    el.innerHTML = html + `</div>`;
-}
-
-function renderGrid(el, list) {
-    const cols={1:[],2:[],3:[],4:[],5:[]};
-    list.forEach(p=>{
-        const elo=p.elo[currentMode];
-        if(elo===undefined)return;
-        const tier=getTier(elo);
-        const num=parseInt(tier.replace(/\D/g,''));
-        if(cols[num])cols[num].push({...p,_elo:elo,_tier:tier});
-    });
-
-    const total=Object.values(cols).reduce((s,c)=>s+c.length,0);
-    if(!total){
-        el.innerHTML=`<div class="empty-state"><h3>No players in ${currentMode} yet</h3><p>Report some matches to populate this!</p></div>`;
-        return;
-    }
-
-    const HEAD_COLORS=['#e84040','#e87820','#d4a800','#3aaa50','#4a70e8'];
-    let html=`<div class="tier-grid">`;
-    for(let i=1;i<=5;i++){
-        const col=cols[i].sort((a,b)=>b._elo-a._elo);
-        const rows=col.map(p=>{
-            const ign=p.ign||p.name;
-            return`<div class="tier-player-row">
-                <div class="tier-player-left">
-                    <img class="tier-small-avatar" src="https://mc-heads.net/avatar/${ign}/24" loading="lazy">
-                    <span class="tier-small-name">${ign}</span>
-                </div>
-                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-                    <span class="tier-lbl lbl-${p._tier.toLowerCase()}">${p._tier}</span>
-                    <span class="tier-elo-num">${p._elo}</span>
-                </div>
-            </div>`;
-        }).join('')||`<div class="empty-tier">Empty</div>`;
-
-        html+=`<div class="tier-col fade-in" style="animation-delay:${(i-1)*0.06}s">
-            <div class="tier-col-header" style="border-left:3px solid ${HEAD_COLORS[i-1]}">
-                <span>TIER ${i}</span>
-                <span class="tier-col-sub">${col.length} PLAYER${col.length!==1?'S':''}</span>
-            </div>
-            ${rows}
-        </div>`;
-    }
-    el.innerHTML=html+`</div>`;
-}
-
 refresh();
-setInterval(refresh, 30000);
+setInterval(refresh,30000);
 </script>
 </body>
 </html>
